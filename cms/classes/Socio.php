@@ -71,9 +71,9 @@ class Socio
     public $email = null;
 
     /**
-     * @var int position
+     * @var int positionId
      */
-    public $position = null;
+    public $positionId = null;
 
     /**
      * @var int state
@@ -89,18 +89,18 @@ class Socio
 
     public function __construct( $data=array() ) {
         if ( isset( $data['id'] ) ) $this->id = (int) $data['id'];
-        if ( isset( $data['personal_id'] ) ) $this->publicationDate = (int) $data['personal_id'];
-        if ( isset( $data['firstname'] ) ) $this->content = (string) $data['firstname'];
-        if ( isset( $data['lastname'] ) ) $this->content = (string) $data['lastname'];
-        if ( isset( $data['date_of_birth'] ) ) $this->content = $data['date_of_birth'];
-        if ( isset( $data['address'] ) ) $this->content = (string) $data['address'];
-        if ( isset( $data['cap'] ) ) $this->content = (string) $data['cap'];
-        if ( isset( $data['city'] ) ) $this->content = (string) $data['city'];
-        if ( isset( $data['phone'] ) ) $this->content = (string) $data['phone'];
-        if ( isset( $data['nationality'] ) ) $this->content = (string) $data['nationality'];
-        if ( isset( $data['email'] ) ) $this->content = (string) $data['email'];
-        if ( isset( $data['position'] ) ) $this->content = (int) $data['email'];
-        if ( isset( $data['state'] ) ) $this->content = (int) $data['email'];
+        if ( isset( $data['personal_id'] ) ) $this->personal_id = (int) $data['personal_id'];
+        if ( isset( $data['firstname'] ) ) $this->firstname = (string) $data['firstname'];
+        if ( isset( $data['lastname'] ) ) $this->lastname = (string) $data['lastname'];
+        if ( isset( $data['date_of_birth'] ) ) $this->date_of_birth = $data['date_of_birth'];
+        if ( isset( $data['address'] ) ) $this->address = (string) $data['address'];
+        if ( isset( $data['cap'] ) ) $this->cap = (string) $data['cap'];
+        if ( isset( $data['city'] ) ) $this->city = (string) $data['city'];
+        if ( isset( $data['phone'] ) ) $this->phone = (string) $data['phone'];
+        if ( isset( $data['nationality'] ) ) $this->nationality = (string) $data['nationality'];
+        if ( isset( $data['email'] ) ) $this->email = (string) $data['email'];
+        if ( isset( $data['positionId'] ) ) $this->positionId = (int) $data['positionId'];
+        if ( isset( $data['state'] ) ) $this->state = (int) $data['state'];
     }
 
 
@@ -115,15 +115,16 @@ class Socio
         // Store all the parameters
         $this->__construct( $params );
 
+        /*
         // Parse and store the publication date
         if ( isset($params['date_of_birth']) ) {
-            $date_of_birth = explode ( '-', $params['publicationDate'] );
+            $date_of_birth = explode ( '-', $params['date_of_birth'] );
 
             if ( count($date_of_birth) == 3 ) {
                 list ( $y, $m, $d ) = $date_of_birth;
                 $this->date_of_birth = mktime ( 0, 0, 0, $m, $d, $y );
             }
-        }
+        }*/
     }
 
 
@@ -136,7 +137,7 @@ class Socio
 
     public static function getById( $id ) {
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-        $sql = "SELECT *, FROM socio WHERE id = :id";
+        $sql = "SELECT * FROM socio WHERE id = :id";
         $st = $conn->prepare( $sql );
         $st->bindValue( ":id", $id, PDO::PARAM_INT );
         $st->execute();
@@ -156,25 +157,45 @@ class Socio
 
     public static function getList( $numRows=1000000, $order="id DESC" ) {
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-        $sql = "SELECT SQL_CALC_FOUND_ROWS *, FROM socio
-            ORDER BY " . mysql_escape_string($order) . " LIMIT :numRows";
-
+        $sql = "SELECT * FROM socio
+            ORDER BY id ASC";
         $st = $conn->prepare( $sql );
         $st->bindValue( ":numRows", $numRows, PDO::PARAM_INT );
         $st->execute();
         $list = array();
 
         while ( $row = $st->fetch() ) {
-            $article = new Socio( $row );
-            $list[] = $article;
+            $socio = new Socio( $row );
+            $list[] = $socio;
         }
 
-        // Now get the total number of articles that matched the criteria
+        // Now get the total number of soci that matched the criteria
         $sql = "SELECT FOUND_ROWS() AS totalRows";
         $totalRows = $conn->query( $sql )->fetch();
         $conn = null;
         return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
     }
+
+    public static function getListByState($stateId=0, $numRows=1000000, $order="id DESC") {
+        $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+        $sql = "SELECT * FROM socio WHERE state=:state ORDER BY id ASC";
+        $st = $conn->prepare( $sql );
+        $st->bindValue( ":state", $stateId, PDO::PARAM_INT );
+        $st->execute();
+        $list = array();
+
+        while ( $row = $st->fetch() ) {
+            $socio = new Socio( $row );
+            $list[] = $socio;
+        }
+
+        // Now get the total number of soci that matched the criteria
+        $sql = "SELECT FOUND_ROWS() AS totalRows";
+        $totalRows = $conn->query( $sql )->fetch();
+        $conn = null;
+        return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
+    }
+
 
 
     /**
@@ -184,11 +205,11 @@ class Socio
     public function insert() {
 
         // Does the Article object already have an ID?
-        if ( !is_null( $this->id ) ) trigger_error ( "Socio::insert(): Attempt to insert a Socio object that already has its ID property set (to $this->id).", E_USER_ERROR );
+        //if ( !is_null( $this->id ) ) trigger_error ( "Socio::insert(): Attempt to insert a Socio object that already has its ID property set (to $this->id).", E_USER_ERROR );
 
         // Insert the Article
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-        $sql = "INSERT INTO socio ( personal_id, firstname, lastname, date_of_birth, nationality, address, cap, city, phone, email, position, state ) VALUES ( :personal_id, :firstname, :lastname, :date_of_birth, :nationality, :address, :cap, :city, :phone, :email, :position, :state )";
+        $sql = "INSERT INTO socio ( personal_id, firstname, lastname, date_of_birth, nationality, address, cap, city, phone, email, positionId, state ) VALUES ( :personal_id, :firstname, :lastname, :date_of_birth, :nationality, :address, :cap, :city, :phone, :email, :positionId, :state )";
         $st = $conn->prepare ( $sql );
         $st->bindValue( ":personal_id", $this->personal_id, PDO::PARAM_INT );
         $st->bindValue( ":firstname", $this->firstname, PDO::PARAM_STR );
@@ -200,7 +221,7 @@ class Socio
         $st->bindValue( ":city", $this->city, PDO::PARAM_STR);
         $st->bindValue( ":phone", $this->phone, PDO::PARAM_STR);
         $st->bindValue( ":email", $this->email, PDO::PARAM_STR);
-        $st->bindValue( ":position", $this->position, PDO::PARAM_INT);
+        $st->bindValue( ":positionId", $this->positionId, PDO::PARAM_INT);
         $st->bindValue( ":state", $this->state, PDO::PARAM_INT);
         $st->execute();
         $this->id = $conn->lastInsertId();
@@ -219,8 +240,10 @@ class Socio
 
         // Update the Article
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-        $sql = "UPDATE articles SET personal_id=:personal_id, firstname=:firstname, lastname=:lastname, date_of_birth=:date_of_birth, nationality=:nationality, address=:address, cap=:cap, city=:city, phone=:phone, email=:email, position=:position, state=:state WHERE id = :id";
+        $sql = "UPDATE socio SET personal_id=:personal_id, firstname=:firstname, lastname=:lastname, date_of_birth=:date_of_birth, nationality=:nationality, address=:address, cap=:cap, city=:city, phone=:phone, email=:email, positionId=:positionId, state=:state WHERE id = :id";
+
         $st = $conn->prepare ( $sql );
+        $st->bindValue( ":id", $this->id, PDO::PARAM_INT );
         $st->bindValue( ":personal_id", $this->personal_id, PDO::PARAM_INT );
         $st->bindValue( ":firstname", $this->firstname, PDO::PARAM_STR );
         $st->bindValue( ":lastname", $this->lastname, PDO::PARAM_STR );
@@ -231,7 +254,7 @@ class Socio
         $st->bindValue( ":city", $this->city, PDO::PARAM_STR);
         $st->bindValue( ":phone", $this->phone, PDO::PARAM_STR);
         $st->bindValue( ":email", $this->email, PDO::PARAM_STR);
-        $st->bindValue( ":position", $this->position, PDO::PARAM_INT);
+        $st->bindValue( ":positionId", $this->positionId, PDO::PARAM_INT);
         $st->bindValue( ":state", $this->state, PDO::PARAM_INT);
         $st->execute();
         $conn = null;

@@ -32,6 +32,9 @@ switch ( $action ) {
     case 'deleteSocio':
         deleteSocio();
         break;
+    case 'listSoci':
+        listSoci();
+        break;
     default:
         showDashboard();
 }
@@ -86,7 +89,7 @@ function newSocio() {
         $socio = new Socio;
         $socio->storeFormValues( $_POST );
         $socio->insert();
-        header( "Location: admin.php?status=changesSaved" );
+        header( "Location: admin.php?action=listSoci" );
 
     } elseif ( isset( $_POST['cancel'] ) ) {
 
@@ -96,40 +99,47 @@ function newSocio() {
 
         // User has not posted the article edit form yet: display the form
         $results['socio'] = new Socio;
-        require( TEMPLATE_PATH . "/admin/editArticle.php" );
+        require( TEMPLATE_PATH . "/admin/editSocio.php" );
     }
 
 }
 
 
 function editSocio() {
-
+    
     $results = array();
     $results['pageTitle'] = "Edit Socio";
     $results['formAction'] = "editSocio";
 
+    
+    
     if ( isset( $_POST['saveChanges'] ) ) {
-
+        
         // User has posted the article edit form: save the article changes
-
-        if ( !$socio = Socio::getById( (int)$_POST['socioId'] ) ) {
+        alert_log("SAVE socio");
+        if ( !$socio = Socio::getById( (int)$_POST['id'] ) ) {
             header( "Location: admin.php?error=articleNotFound" );
             return;
         }
 
         $socio->storeFormValues( $_POST );
         $socio->update();
-        header( "Location: admin.php?status=changesSaved" );
+        header( "Location: admin.php?action=listSoci" );
+
 
     } elseif ( isset( $_POST['cancel'] ) ) {
+
+        console_log("CANCEL update socio");
 
         // User has cancelled their edits: return to the article list
         header( "Location: admin.php" );
     } else {
 
+        console_log("EDIT socio");
+
         // User has not posted the article edit form yet: display the form
         $results['socio'] = Socio::getById( (int)$_GET['socioId'] );
-        require( TEMPLATE_PATH . "/admin/editArticle.php" );
+        require( TEMPLATE_PATH . "/admin/editSocio.php" );
     }
 
 }
@@ -143,16 +153,21 @@ function deleteSocio() {
     }
 
     $socio->delete();
-    header( "Location: admin.php?status=articleDeleted" );
+    header( "Location: admin.php?action=listSoci" );
 }
 
 
-function listArticles() {
+function listSoci() {
     $results = array();
-    $data = Socio::getList();
+    $data = Socio::getListByState(0);
     $results['soci'] = $data['results'];
     $results['totalRows'] = $data['totalRows'];
-    $results['pageTitle'] = "All Soci";
+
+    $requests = Socio::getListByState(1);
+    $results['requests'] = $requests['results'];
+    $results['requestsTotalRows'] = $requests['totalRows'];
+    
+    $results['pageTitle'] = "Gestione Soci";
 
     if ( isset( $_GET['error'] ) ) {
         if ( $_GET['error'] == "articleNotFound" ) $results['errorMessage'] = "Error: Article not found.";
@@ -163,9 +178,22 @@ function listArticles() {
         if ( $_GET['status'] == "articleDeleted" ) $results['statusMessage'] = "Article deleted.";
     }
 
-    require( TEMPLATE_PATH . "/admin/listArticles.php" );
+    require( TEMPLATE_PATH . "/admin/listSoci.php" );
 }
 
 function showDashboard() {
     require( TEMPLATE_PATH . "/admin/dashboard.php" );
+}
+
+
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log("'.$data.'")';
+    echo '</script>';
+}
+
+function alert_log( $data ){
+    echo '<script>';
+    echo 'alert("Message: '.$data.'");';
+    echo '</script>';
 }
