@@ -60,7 +60,7 @@ $( document ).ready(function() {
         var str = $("#soci-firstname-field").val();
         $('.socio-row').remove();
         for(var i=0; i<sociList.length; i++){
-            if(sociList[i].firstname.indexOf(str) > -1) {
+            if(sociList[i].firstname.indexOf(str) > -1 || sociList[i].firstname.toLowerCase().indexOf(str) > -1) {
                 $("#soci-table").append('<tr class="socio-row"><td>'+sociList[i].id+'</td><td>'+sociList[i].firstname+'</td><td>'+sociList[i].lastname+'</td><td style="display: none">'+sociList[i].dbId+'</td></tr>');
             }
         }
@@ -72,7 +72,7 @@ $( document ).ready(function() {
         var str = $("#soci-lastname-field").val();
         $('.socio-row').remove();
         for(var i=0; i<sociList.length; i++){
-            if(sociList[i].lastname.indexOf(str) > -1) {
+            if(sociList[i].lastname.indexOf(str) > -1 || sociList[i].lastname.toLowerCase().indexOf(str) > -1) {
                 $("#soci-table").append('<tr class="socio-row"><td>'+sociList[i].id+'</td><td>'+sociList[i].firstname+'</td><td>'+sociList[i].lastname+'</td><td style="display: none">'+sociList[i].dbId+'</td></tr>');
             }
         }

@@ -158,7 +158,7 @@ label {
 
 /* The fields */
 
-input, select, textarea {
+input, select, textarea, select {
     display: block;
     margin: 0;
     padding: .4em;
@@ -172,7 +172,7 @@ input[type="radio"] {
     padding: 0;
 }
 
-input, textarea, .date {
+input, select, textarea, .date {
     border: 2px solid #666;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -180,15 +180,16 @@ input, textarea, .date {
     background: #fff;
 }
 
-input {
+input, input[type="date"], select {
     font-size: .9em;
 }
 
 select {
     padding: 0;
-    margin-bottom: 2.5em;
+    margin-bottom: 0;
     position: relative;
-    top: .7em;
+
+    height: 32px;
 }
 
 textarea {
@@ -213,7 +214,7 @@ form *:focus {
 
 /* Display correctly filled-in fields with a green background */
 
-input:valid, textarea:valid {
+input:valid, textarea:valid, select:valid {
     background: #efe;
 }
 
@@ -327,6 +328,17 @@ tr:hover {
     color: #fff;
 }
 
+
+/* DASHBOARD */
+.dashboard-btn {
+    width: 40%;
+    height: 120px;
+    margin: 24px;
+
+    font-size: 24px;
+}
+
+
 .section-title {text-align: center;}
 
 .section-back-container img { height: 16px;}
@@ -347,3 +359,16 @@ tr:hover {
 .inline-input {display: inline; width: 64px;}
 
 #requests-btn { margin-left: 16px;}
+
+
+.row-action-field {padding: 0; text-align: right;}
+.row-action-field img {
+    border: 2px solid #7c412b;
+    margin-top: 8px;
+    margin-right: 8px;
+}
+
+.row-action-field img:hover {background-color: #f8ffba;}
+
+.row-action-approve { padding: 4px; height: 30px; }
+.row-action-cancel { padding: 8px; height: 22px;}

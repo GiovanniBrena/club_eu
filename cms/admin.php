@@ -35,6 +35,9 @@ switch ( $action ) {
     case 'listSoci':
         listSoci();
         break;
+    case 'showRequests':
+        showRequests();
+        break;
     default:
         showDashboard();
 }
@@ -166,6 +169,9 @@ function listSoci() {
     $requests = Socio::getListByState(1);
     $results['requests'] = $requests['results'];
     $results['requestsTotalRows'] = $requests['totalRows'];
+    $renews = Socio::getListByState(2);
+    $results['renews'] = $renews['results'];
+    $results['renewsTotalRows'] = $renews['totalRows'];
     
     $results['pageTitle'] = "Gestione Soci";
 
@@ -182,7 +188,32 @@ function listSoci() {
 }
 
 function showDashboard() {
+    $results['pageTitle'] = "Dashboard";
     require( TEMPLATE_PATH . "/admin/dashboard.php" );
+}
+
+function showRequests() {
+    $results = array();
+    $requests = Socio::getListByState(1);
+    $results['requests'] = $requests['results'];
+    $results['requestsTotalRows'] = $requests['totalRows'];
+
+    $renewRequests = Socio::getListByState(2);
+    $results['renewRequests'] = $renewRequests['results'];
+    $results['renewRequestsTotalRows'] = $renewRequests['totalRows'];
+
+    $results['pageTitle'] = "Gestione Richieste";
+
+    if ( isset( $_GET['error'] ) ) {
+        if ( $_GET['error'] == "articleNotFound" ) $results['errorMessage'] = "Error: Article not found.";
+    }
+
+    if ( isset( $_GET['status'] ) ) {
+        if ( $_GET['status'] == "changesSaved" ) $results['statusMessage'] = "Your changes have been saved.";
+        if ( $_GET['status'] == "articleDeleted" ) $results['statusMessage'] = "Article deleted.";
+    }
+
+    require( TEMPLATE_PATH . "/admin/showRequests.php" );
 }
 
 
