@@ -278,5 +278,27 @@ class Socio
         $conn = null;
     }
 
+
+    public static function getNextPersonalId(){
+        $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+        $sql = "SELECT personal_id FROM socio
+            ORDER BY personal_id DESC LIMIT 1";
+        $st = $conn->prepare( $sql );
+        $st->execute();
+        $list = array();
+
+        while ( $row = $st->fetch() ) {
+            $socio = new Socio( $row );
+            $list[] = $socio;
+        }
+
+        // Now get the total number of soci that matched the criteria
+        $sql = "SELECT FOUND_ROWS() AS totalRows";
+        $totalRows = $conn->query( $sql )->fetch();
+        $conn = null;
+        $result = array ( "data" => $list, "totalRows" => $totalRows[0] );
+        return $result['data'][0]->personal_id+1;
+    }
+
 }
 

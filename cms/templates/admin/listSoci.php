@@ -16,8 +16,7 @@
 <div style="position: relative">
     <button id="add-socio-btn" class="btn-orange" onclick="location='admin.php?action=newSocio'"><span><img id="new-socio-icon" src="images/add.png" height="12px">   NUOVO SOCIO</span></button>
     <span style="position: absolute; right: 0">
-        Ci sono <?php echo $results["requestsTotalRows"]+$results["renewsTotalRows"] ?> richieste in attesa
-        <button id="requests-btn" class="btn-orange" onclick="location='admin.php?action=showRequests'">GESTISCI RICHIESTE</button>
+        <button id="requests-btn" class="btn-orange" onclick="location='admin.php?action=showRequests'">GESTISCI RICHIESTE <span class="badge"><?php echo $results["requestsTotalRows"]+$results["renewsTotalRows"] ?> </span></button>
     </span>
 </div>
 

@@ -72,4 +72,19 @@
     ?>
 </table>
 
+
+
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <p>Some text in the Modal..</p>
+        <input type="submit" name="saveChanges" value="SALVA" />
+        <input type="submit" formnovalidate name="cancel" id="modal-cancel" value="Annulla" />
+    </div>
+
+</div>
+
+
+
 <script type="text/javascript" src="templates/admin/js/show-requests.js"></script>

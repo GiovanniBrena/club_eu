@@ -38,6 +38,9 @@ switch ( $action ) {
     case 'showRequests':
         showRequests();
         break;
+    case 'editSocioRequest':
+        editSocioRequest();
+        break;
     default:
         showDashboard();
 }
@@ -215,6 +218,42 @@ function showRequests() {
 
     require( TEMPLATE_PATH . "/admin/showRequests.php" );
 }
+
+
+function editSocioRequest() {
+
+    $results = array();
+    $results['pageTitle'] = "Edit Request";
+    $results['formAction'] = "editSocioRequest";
+
+
+
+    if ( isset( $_POST['saveChanges'] ) ) {
+
+        // User has posted the article edit form: save the article changes
+        if ( !$socio = Socio::getById( (int)$_POST['id'] ) ) {
+            header( "Location: admin.php?error=articleNotFound" );
+            return;
+        }
+
+        $socio->storeFormValues( $_POST );
+        $socio->update();
+        header( "Location: admin.php?action=showRequests" );
+
+
+    } elseif ( isset( $_POST['cancel'] ) ) {
+
+        // User has cancelled their edits: return to the article list
+        header( "Location: admin.php" );
+    } else {
+
+        // User has not posted the article edit form yet: display the form
+        $results['socio'] = Socio::getById( (int)$_GET['socioId'] );
+        require( TEMPLATE_PATH . "/admin/editSocioRequest.php" );
+    }
+
+}
+
 
 
 function console_log( $data ){
