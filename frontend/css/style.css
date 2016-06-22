@@ -1,0 +1,44 @@
+@import 'https://fonts.googleapis.com/css?family=Ek+Mukta';
+
+body {
+  background-color: rgb(250,237,135);
+  font-family: 'Ek Mukta', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+  color: #212852;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+.carousel {
+  background-color: white;
+  margin-top: 50px;
+  height: 500px;
+}
+
+.main {
+  background-color: rgb(253,245,196);
+  min-height: 500px;
+  padding: 100px;
+}
+
+.newsletter, .news {
+  border: 6px solid white;
+}
+
+.newsletter {
+  background-color: rgb(225, 235, 246);
+  margin-bottom: -6px;
+}
+
+.news {
+  background-color: rgb(250,237,135);
+}
+
+.activities, .courses {
+  background-color: white;
+  margin-bottom: 50px;
+}
