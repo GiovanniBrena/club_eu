@@ -3,6 +3,7 @@
 body {
   background-color: rgb(250,237,135);
   font-family: 'Ek Mukta', sans-serif;
+  width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6, p, a {
@@ -13,16 +14,35 @@ h1 {
   font-weight: bold;
 }
 
+h3 {
+  line-height: 1.4em;
+  font-weight: lighter;
+}
+
+h4 {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
 .carousel {
   background-color: white;
   margin-top: 50px;
-  height: 500px;
+  height: 450px;
+}
+
+.club {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+
+.club .row .col-md-3 h4 {
+  border-bottom: 4px solid #212852;
 }
 
 .main {
   background-color: rgb(253,245,196);
   min-height: 500px;
-  padding: 100px;
+  padding-top: 70px;
 }
 
 .newsletter, .news {
@@ -41,4 +61,5 @@ h1 {
 .activities, .courses {
   background-color: white;
   margin-bottom: 50px;
+  padding: 25px 30px 42px 44px;
 }
