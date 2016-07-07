@@ -24,6 +24,10 @@ h4 {
   font-size: 1.5em;
 }
 
+form {
+  margin: 0 0 64px 0;
+}
+
 .carousel {
   background-color: white;
   margin-top: 50px;

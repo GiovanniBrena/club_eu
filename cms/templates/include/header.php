@@ -3,7 +3,7 @@
   <head>
     <title><?php echo htmlspecialchars( $results['pageTitle'] )?></title>
 <link rel="stylesheet" type="text/css" href="admin-style.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="templates/admin/js/jquery-3.0.0.min.js"></script>
 </head>
 <body>
 <div id="container">

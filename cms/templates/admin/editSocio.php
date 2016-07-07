@@ -11,10 +11,12 @@
     </div>
 
 
-<?php if ($results['socio']->id == null) { ?>
+<?php if ($results['socio']->id == null) {
+    $personalId = Socio::getNextPersonalId();?>
     <h1 class="section-title">Nuovo Socio</h1> <?php 
-} else { ?>
-    <h1 class="section-title">Modifica Socio</h1> <?php  
+} else {
+    $personalId = $results['socio']->personal_id ?>
+    <h1 class="section-title">Modifica Socio</h1><?php
 }
 ?>
 
@@ -31,7 +33,7 @@
 
             <li>
                 <label for="title">Numero Socio</label>
-                <input type="text" name="personal_id" id="personal_id" placeholder="Numero socio" maxlength="255" value="<?php echo htmlspecialchars( $results['socio']->personal_id )?>" />
+                <input type="text" name="personal_id" id="personal_id" placeholder="Numero socio" maxlength="255" value="<?php echo $personalId?>" readonly/>
             </li>
 
             <li>
