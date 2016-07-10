@@ -10,6 +10,11 @@ h1, h2, h3, h4, h5, h6, p, a {
   color: #212852;
 }
 
+p {
+  font-size: 1.2em;
+  line-height: 1.5em;
+}
+
 h1 {
   font-weight: bold;
 }
@@ -22,6 +27,7 @@ h3 {
 h4 {
   font-weight: bold;
   font-size: 1.5em;
+  line-height: 1.55em;
 }
 
 form {
@@ -35,18 +41,35 @@ form {
 }
 
 .club {
-  padding-top: 50px;
-  padding-bottom: 40px;
+  padding-top: 30px;
+  padding-bottom: 26px;
 }
 
 .club .row .col-md-3 h4 {
   border-bottom: 4px solid #212852;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+.club .row .col-md-3:hover {
+  background-color: rgb(253,245,196);
+  border-radius: 10px;
+}
+
+.tit-pag {
+  background-color: white;
+}
+
+.tit-pag h1 {
+  font-size: 4.5em;
+  margin-left: 20px;
+  margin-top: -23px;
 }
 
 .main {
   background-color: rgb(253,245,196);
-  min-height: 500px;
-  padding-top: 70px;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .newsletter, .news {
@@ -66,4 +89,34 @@ form {
   background-color: white;
   margin-bottom: 50px;
   padding: 25px 30px 42px 44px;
+}
+
+.azzurro {
+  background-color: rgb(225, 235, 246);
+  min-height: 400px;
+}
+.azzurro .row {
+  margin-top: 50px;
+}
+
+.azzurro h1 {
+  font-size: 3em;
+}
+
+.step {
+  background-color: white;
+
+}
+
+.step h4 {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.secondo {
+  margin-top: 100px;
+}
+
+.modulo {
+  margin-top: 50px;
 }
