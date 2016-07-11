@@ -157,3 +157,11 @@ form {
 .modulo {
   margin-top: 50px;
 }
+
+
+.modal {
+  text-align: center;
+}
+
+.modal-dialog { max-width: 600px;}
+.modal-title { margin:24px 0;}

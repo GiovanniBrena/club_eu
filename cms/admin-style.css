@@ -1,10 +1,10 @@
 /* Style the body and outer container */
-
+@import 'https://fonts.googleapis.com/css?family=Ek+Mukta';
 body {
     margin: 0;
     color: #333;
     background-color: #00a0b0;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-family: 'Ek Mukta', sans-serif;
     line-height: 1.5em;
 }
 
@@ -119,9 +119,6 @@ form {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    -moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
-    -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
-    box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
 }
 
 
@@ -235,9 +232,6 @@ input[type="submit"], .btn-orange {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    -moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
-    -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
-    box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
     color: #fff;
     background: #ef7d50;
     font-weight: bold;
@@ -252,9 +246,6 @@ input[type="submit"]:hover, input[type="submit"]:active, .btn-orange:hover, .btn
 
 input[type="submit"]:active, .btn-orange:active {
     background: #eee;
-    -moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8) inset;
-    -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8) inset;
-    box-shadow: 0 0 .5em rgba(0, 0, 0, .8) inset;
 }
 
 .btn-orange {
@@ -311,9 +302,7 @@ tr:hover {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    -moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
-    -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
-    -box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+
 }
 
 .statusMessage {
