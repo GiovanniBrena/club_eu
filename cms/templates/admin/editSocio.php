@@ -304,7 +304,6 @@
 
         <div class="buttons">
             <input type="submit" name="saveChanges" value="SALVA" />
-            <input type="submit" formnovalidate name="cancel" value="Annulla" />
         </div>
 
     </form>
