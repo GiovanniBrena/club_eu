@@ -6,6 +6,8 @@
  * Time: 16:04
  */
 
+require( "../config.php" );
+
 echo $_POST["name"] . "Your email address is: " . $_POST["email"];
 
 $socio = new Socio;

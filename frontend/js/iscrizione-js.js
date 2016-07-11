@@ -17,6 +17,7 @@ $("#request-form").submit(function(e){
     var cap = $('#capField').val();
     var city = $('#cityField').val();
     var phone = $('#phoneField').val();
+    //var position = $('#positionField').val();
     $.ajax({
         url: '../cms/templates/socio-request.php',
         type:'POST',
@@ -30,11 +31,13 @@ $("#request-form").submit(function(e){
             address: address,
             cap: cap,
             city: city,
-            phone: phone
+            phone: phone,
+            position: 0,
+            state: 0
         },
         success: function(msg)
         {
-            alert('Request Sent');
+            alert(msg);
         }
     });
     return false;

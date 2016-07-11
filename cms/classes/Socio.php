@@ -1,7 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Giovanni
+ * Created by Giovanni Brena
  * Date: 17/06/2016
  * Time: 11:12
  */
@@ -72,11 +71,17 @@ class Socio
 
     /**
      * @var int positionId
+     * 0 -> Interno
+     * 1 -> Esterno
      */
     public $positionId = null;
 
     /**
      * @var int state
+     * 0 -> Attivo
+     * 1 -> In attesa approvazione
+     * 2 -> In attesa rinnovo
+     * 3 -> Non attivo
      */
     public $state = null;
 
@@ -129,10 +134,10 @@ class Socio
 
 
     /**
-     * Returns an Article object matching the given article ID
+     * Returns a Socio object matching the given socioID
      *
-     * @param int The article ID
-     * @return Article|false The article object, or false if the record was not found or there was a problem
+     * @param int The socio ID
+     * @return Socio|false The article object, or false if the record was not found or there was a problem
      */
 
     public static function getById( $id ) {
@@ -230,7 +235,7 @@ class Socio
 
 
     /**
-     * Updates the current Article object in the database.
+     * Updates the current Socio object in the database.
      */
 
     public function update() {
