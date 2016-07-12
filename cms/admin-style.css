@@ -1,18 +1,19 @@
 /* Style the body and outer container */
 @import 'https://fonts.googleapis.com/css?family=Ek+Mukta';
+@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 body {
     margin: 0;
+    background-color: #00bbbb;
     color: #333;
-    background-color: #00a0b0;
     font-family: 'Ek Mukta', sans-serif;
     line-height: 1.5em;
 }
 
 #container {
+    background-color: transparent;
     width: 960px;
-    background: #fff;
     margin: 20px auto;
-    padding: 20px;
+    padding: 20px 100px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -34,7 +35,6 @@ body {
 }
 
 #footer {
-    border-top: 1px solid #00a0b0;
     margin-top: 40px;
     padding: 20px 0 0 0;
     font-size: .8em;
@@ -44,9 +44,10 @@ body {
 /* Headings */
 
 h1 {
-    color: #eb6841;
+    color: #ffffff;
     margin-bottom: 30px;
     line-height: 1.2em;
+    font-size: 42px;
 }
 
 h2, h2 a {
@@ -99,10 +100,9 @@ h2 a {
 /* "You are logged in..." header on admin pages */
 
 #adminHeader {
-    width: 940px;
-    padding: 0 10px;
-    border-bottom: 1px solid #00a0b0;
-    margin: -30px 0 40px 0;
+    width: 960px;
+    padding: 0 0;
+    margin: 0 0 0 0;
     font-size: 0.8em;
     position: relative;
 }
@@ -228,12 +228,9 @@ input[type="submit"], .btn-orange {
     margin: 0 20px;
     width: 12em;
     padding: 10px;
-    border: 2px solid #7c412b;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    border: 2px solid #fb8c61;
     color: #fff;
-    background: #ef7d50;
+    background: #fb8c61;
     font-weight: bold;
     -webkit-appearance: none;
 }
@@ -241,7 +238,7 @@ input[type="submit"], .btn-orange {
 input[type="submit"]:hover, input[type="submit"]:active, .btn-orange:hover, .btn-orange:active {
     cursor: pointer;
     background: #fff;
-    color: #ef7d50;
+    color: #fb8c61;
 }
 
 input[type="submit"]:active, .btn-orange:active {
@@ -274,7 +271,7 @@ table, th {
 th {
     border-left: none;
     border-right: none;
-    background: #ef7d50;
+    background: #257c86;
     color: #fff;
     cursor: default;
 }
@@ -319,6 +316,15 @@ tr:hover {
 
 
 /* DASHBOARD */
+
+.header-container {
+    width: 960px;
+    height: 73px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
 .dashboard-btn {
     width: 40%;
     height: 120px;
@@ -370,8 +376,7 @@ tr:hover {
 .section-back-container img { height: 16px;}
 .section-back-container a { text-decoration: none;}
 .section-back-container span {
-    color: #eb6841;
-    margin-bottom: 30px;
+    color: #ffffff;
     line-height: 1.2em;
     font-size: 24px;
     width: 100%;
@@ -398,3 +403,100 @@ tr:hover {
 
 .row-action-approve { padding: 4px; height: 30px; }
 .row-action-cancel { padding: 8px; height: 22px;}
+
+.dropdown {
+    display:inline-block;
+    position:relative;
+    margin:15px;
+}
+.dropdown-button {
+    height: 42px;
+    border: 2px solid #fb8c61;
+    background:#fb8c61;
+    min-width:160px;
+    color:#fff;
+    letter-spacing:0.025rem;
+    box-sizing:border-box;
+    padding:10px 30px 10px 20px;
+    position:relative;
+    cursor:pointer;
+    transition:background .3s ease;
+}
+.dropdown-button:hover {
+    background:#fb8c61;
+    transition:background .3s ease;
+}
+.triangle {
+    font-size:50%;
+    position:absolute;
+    right:10px;
+    top:-2px;
+    bottom:0;
+    margin-top:auto;
+    margin-bottom:auto;
+    height:5px;
+    color:#fff;
+}
+.dropdown ul.active {
+    visibility:visible;
+    transition:all .3s ease;
+    transform:scaleY(1);
+    color:#333;
+}
+.dropdown ul {
+    visibility:hidden;
+    overflow:hidden;
+    color:#fff;
+    transform-origin:top;
+    padding:0;
+    list-style:none;
+    transform:scaleY(0);
+    box-shadow:0px 2px 6px 0 rgba(0,0,0,0.2);
+    position:absolute;
+    left:0;
+    margin-top:2px;
+    top:100%;
+    min-width:90%;
+    transition:all .3s ease;
+}
+.dropdown li {
+    background:#fff;
+    padding:8px 10px 8px 15px;
+    box-sizing:border-box;
+    cursor:pointer;
+    transition:background .2s ease;
+    position:relative;
+}
+.dropdown li.check {
+    background:#f6f6f6;
+}
+.dropdown li.check:after {
+    content:'';
+    position:absolute;
+    height:15px;
+    width:3px;
+    background:#ccc;
+    top:0;
+    bottom:0;
+    margin-top:auto;
+    transform:rotate(40deg);
+    margin-bottom:auto;
+    right:15px;
+}
+.dropdown li.check:before {
+    content:'';
+    position:absolute;
+    height:3px;
+    width:9px;
+    background:#ccc;
+    top:6px;
+    bottom:0;
+    margin-top:auto;
+    transform:rotate(40deg);
+    margin-bottom:auto;
+    right:19px;
+}
+.dropdown li:hover {
+    background:#f6f6f6;
+    transition:background .2s ease;
+}

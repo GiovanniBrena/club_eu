@@ -3,7 +3,7 @@
     <div id="adminHeader">
           <span class="section-back-container">
               <a href="admin.php?action=dashboard">
-                  <img src="images/left-arrow.png">
+                  <i class="fa fa-arrow-left" style="top: 0; color: white; width: auto; padding: 4px"></i>
                   <span>back</span>
               </a>
           </span>
@@ -11,11 +11,20 @@
       </div>
 
 
-<h1 class="section-title">Gestione Soci</h1>
+<h1 class="section-title">Gestione soci</h1>
 
-<div style="position: relative">
+<div style="position: relative;">
     <button id="add-socio-btn" class="btn-orange" onclick="location='admin.php?action=newSocio'"><span><img id="new-socio-icon" src="images/add.png" height="12px">   NUOVO SOCIO</span></button>
     <span style="position: absolute; right: 0">
+            <div class='dropdown' id='year-dropdown'>
+                <div class='dropdown-button'><?php $year = isset( $_GET['year'] ) ? $_GET['year'] : "2016"; echo $year ?></div>
+                <span class='triangle'>&#9660;</span>
+                <ul class='dropdown-selection'>
+                    <li class="year-selector">2016</li>
+                    <li class="year-selector">2015</li>
+                    <li class="year-selector">2014</li>
+                </ul>
+            </div>
         <button id="requests-btn" class="btn-orange" onclick="location='admin.php?action=showRequests'">GESTISCI RICHIESTE <span class="badge"><?php echo $results["requestsTotalRows"]+$results["renewsTotalRows"] ?> </span></button>
     </span>
 </div>
@@ -29,11 +38,12 @@
         <div class="statusMessage"><?php echo $results['statusMessage'] ?></div>
 <?php } ?>
 
-      <table id="soci-table">
+      <table id="soci-table" class="sortable">
         <tr>
           <th>Numero socio <input id="soci-id-field" class="inline-input"></th>
           <th>Nome <input id="soci-firstname-field" class="inline-input"></th>
           <th>Cognome <input id="soci-lastname-field" class="inline-input"></th>
+          <th>Data creazione<input id="soci-date-field" class="inline-input"></th>
         </tr>
 
 <?php foreach ( $results['soci'] as $socio ) { ?>
@@ -43,6 +53,7 @@
           <td><?php echo $socio->firstname?></td>
           <td><?php echo $socio->lastname?></td>
           <td style="display: none"><?php echo $socio->id?></td>
+          <td><?php $dateCreate = new DateTime($socio->date_create); echo $dateCreate->format('d-m-Y')?></td>
         </tr>
 
 <?php }
@@ -50,3 +61,4 @@
       </table>
 
 <script type="text/javascript" src="templates/admin/js/list-soci.js"></script>
+<script src="templates/admin/js/sorttable.js"></script>
