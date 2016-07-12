@@ -3,7 +3,7 @@
     <div id="adminHeader">
           <span class="section-back-container">
               <a href="admin.php?action=showRequests">
-                  <img src="images/left-arrow.png">
+                  <i class="fa fa-arrow-left" style="top: 0; color: white; width: auto; padding: 4px"></i>
                   <span>back</span>
               </a>
           </span>

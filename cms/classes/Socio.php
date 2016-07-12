@@ -79,7 +79,10 @@ class Socio
      * @var int state
      */
     public $state = null;
-
+    /**
+     * @var DATE first name of socio
+     */
+    public $date_create = null;
 
     /**
      * Sets the object's properties using the values in the supplied array
@@ -93,6 +96,7 @@ class Socio
         if ( isset( $data['firstname'] ) ) $this->firstname = (string) $data['firstname'];
         if ( isset( $data['lastname'] ) ) $this->lastname = (string) $data['lastname'];
         if ( isset( $data['date_of_birth'] ) ) $this->date_of_birth = $data['date_of_birth'];
+        if ( isset( $data['date_create'] ) ) $this->date_create = $data['date_create'];
         if ( isset( $data['address'] ) ) $this->address = (string) $data['address'];
         if ( isset( $data['cap'] ) ) $this->cap = (string) $data['cap'];
         if ( isset( $data['city'] ) ) $this->city = (string) $data['city'];
@@ -196,6 +200,30 @@ class Socio
         return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
     }
 
+    public static function getListByStateAndYear($stateId=0, $year=0, $numRows=1000000, $order="id DESC") {
+        $dateMin = new DateTime($year."-01-01 00:00:00");
+        $dateMax = new DateTime($year."-12-31 00:00:00");
+        $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+        $sql = "SELECT * FROM socio WHERE state=:state AND date_create>:date_min AND date_create<:date_max ORDER BY id ASC";
+        $st = $conn->prepare( $sql );
+        $st->bindValue( ":state", $stateId, PDO::PARAM_INT );
+        $st->bindValue( ":date_min", $dateMin->format("Y-m-d"), PDO::PARAM_STR );
+        $st->bindValue( ":date_max", $dateMax->format("Y-m-d"), PDO::PARAM_STR );
+        $st->execute();
+        $list = array();
+
+        while ( $row = $st->fetch() ) {
+            $socio = new Socio( $row );
+            $list[] = $socio;
+        }
+
+        // Now get the total number of soci that matched the criteria
+        $sql = "SELECT FOUND_ROWS() AS totalRows";
+        $totalRows = $conn->query( $sql )->fetch();
+        $conn = null;
+        return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
+    }
+
 
 
     /**
@@ -206,21 +234,7 @@ class Socio
 
         // Does the Article object already have an ID?
         //if ( !is_null( $this->id ) ) trigger_error ( "Socio::insert(): Attempt to insert a Socio object that already has its ID property set (to $this->id).", E_USER_ERROR );
-
-        echo "id: " . $this->id .
-            " personal_id: " . $this->personal_id .
-            " nome: " . $this->firstname .
-            " cognome: " . $this->lastname .
-            " email: " . $this->email .
-            " date: " . $this->date_of_birth .
-            " nationality: " . $this->nationality .
-            " address: " . $this->address .
-            " cap: " . $this->cap .
-            " city: " . $this->city .
-            " phone: " . $this->phone .
-            " position: " . $this->positionId .
-            " state: " . $this->state .
-            " email: " . $this->email;
+        
 
         // Insert the Article
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
