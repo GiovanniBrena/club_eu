@@ -2,8 +2,8 @@
 
     <div id="adminHeader">
           <span class="section-back-container">
-              <a href="admin.php?action=listSoci">
-                  <img src="images/left-arrow.png">
+              <a href="admin.php?action=listSoci&year=2016">
+                  <i class="fa fa-arrow-left" style="top: 0; color: white; width: auto; padding: 4px"></i>
                   <span>back</span>
               </a>
           </span>
@@ -15,8 +15,8 @@
     $personalId = Socio::getNextPersonalId();?>
     <h1 class="section-title">Nuovo Socio</h1> <?php 
 } else {
-    $personalId = $results['socio']->personal_id ?>
-    <h1 class="section-title">Modifica Socio</h1><?php
+    $personalId = $results['socio']->personal_id;?>
+    <h1 class="section-title">Modifica Socio </h1><?php
 }
 ?>
 
@@ -304,7 +304,6 @@
 
         <div class="buttons">
             <input type="submit" name="saveChanges" value="SALVA" />
-            <input type="submit" formnovalidate name="cancel" value="Annulla" />
         </div>
 
     </form>

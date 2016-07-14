@@ -49,7 +49,7 @@ switch ( $action ) {
 function login() {
 
     $results = array();
-    $results['pageTitle'] = "Admin Login | Widget News";
+    $results['pageTitle'] = "Club Europeo - Admin Login";
 
     if ( isset( $_POST['login'] ) ) {
 
@@ -164,8 +164,9 @@ function deleteSocio() {
 
 
 function listSoci() {
+    $year = isset( $_GET['year'] ) ? $_GET['year'] : "";
     $results = array();
-    $data = Socio::getListByState(0);
+    $data = Socio::getListByStateAndYear(0,$year);
     $results['soci'] = $data['results'];
     $results['totalRows'] = $data['totalRows'];
 

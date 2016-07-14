@@ -15,11 +15,9 @@ $( document ).ready(function() {
     });
     $(".row-action-cancel").click(function( event ) {
         event.stopPropagation();
-        alert("click on cancel");
     });
     $(".request-row").click(function( event ) {
         event.stopPropagation();
-        alert("click on request");
     });
 
     $("#modal-cancel").click(function( event ) {
