@@ -7,22 +7,10 @@ $( document ).ready(function() {
     
     bindRequestRow();
 
-    var confirmModal = $("#myModal");
-
-    $(".row-action-approve").click(function( event ) {
-        event.stopPropagation();
-        confirmModal.show();
-    });
-    $(".row-action-cancel").click(function( event ) {
-        event.stopPropagation();
-    });
     $(".request-row").click(function( event ) {
         event.stopPropagation();
     });
 
-    $("#modal-cancel").click(function( event ) {
-        confirmModal.hide();
-    });
 });
 
 

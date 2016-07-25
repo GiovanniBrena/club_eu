@@ -39,7 +39,7 @@
             <td><?php echo $socio->firstname?></td>
             <td><?php echo $socio->lastname?></td>
             <td><?php echo $socio->email?></td>
-            <td class="row-action-field"><img class="row-action-approve" src="images/approve.png"><img class="row-action-cancel" src="images/delete.png"></td>
+            <td class="row-action-field"></td>
             <td style="display: none"><?php echo $socio->id?></td>
         </tr>
 
@@ -64,7 +64,7 @@
             <td><?php echo $socio->personal_id?></td>
             <td><?php echo $socio->firstname?></td>
             <td><?php echo $socio->lastname?></td>
-            <td class="row-action-field"><img class="row-action-approve" src="images/approve.png"><img class="row-action-cancel" src="images/delete.png"></td>
+            <td class="row-action-field"></td>
             <td style="display: none"><?php echo $socio->id?></td>
         </tr>
 
@@ -78,7 +78,7 @@
 
     <!-- Modal content -->
     <div class="modal-content">
-        <p>Some text in the Modal..</p>
+        <p>Vuoi approvare il nuovo socio?</p>
         <input type="submit" name="saveChanges" value="SALVA" />
         <input type="submit" formnovalidate name="cancel" id="modal-cancel" value="Annulla" />
     </div>

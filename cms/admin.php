@@ -91,11 +91,21 @@ function newSocio() {
 
     if ( isset( $_POST['saveChanges'] ) ) {
 
-        // User has posted the socio edit form: save the new socio
-        $socio = new Socio;
-        $socio->storeFormValues( $_POST );
-        $socio->insert();
-        header( "Location: admin.php?action=listSoci" );
+        if ( Socio::existsEmail((string)$_POST['email'])) {
+            header( "Location: admin.php?action=listSoci&state=existingEmail" );
+        }
+        
+        else if ( Socio::existsNameSurnamePhone((string)$_POST['firstname'], (string)$_POST['lastname'] , (string)$_POST['phone'])) {
+            header( "Location: admin.php?action=listSoci&state=duplicated" );
+        }
+
+        else {
+            // User has posted the socio edit form: save the new socio
+            $socio = new Socio;
+            $socio->storeFormValues($_POST);
+            $socio->insert();
+            header("Location: admin.php?action=listSoci");
+        }
 
     } elseif ( isset( $_POST['cancel'] ) ) {
 
@@ -118,13 +128,16 @@ function editSocio() {
     $results['formAction'] = "editSocio";
 
     
-    
     if ( isset( $_POST['saveChanges'] ) ) {
         
         // User has posted the article edit form: save the article changes
-        alert_log("SAVE socio");
         if ( !$socio = Socio::getById( (int)$_POST['id'] ) ) {
             header( "Location: admin.php?error=articleNotFound" );
+            return;
+        }
+
+        else if ( Socio::existsNameSurnamePhone((string)$_POST['firstname'], (string)$_POST['lastname'] , (string)$_POST['phone'])) {
+            console_log("SOCIO DUPLICATO !!");
             return;
         }
 
@@ -165,8 +178,9 @@ function deleteSocio() {
 
 function listSoci() {
     $year = isset( $_GET['year'] ) ? $_GET['year'] : "";
+    if($year==null) {$year = date('Y', time());}
     $results = array();
-    $data = Socio::getListByStateAndYear(0,$year);
+    $data = Socio::getListByStateAndYear(0,$year-1, $year);
     $results['soci'] = $data['results'];
     $results['totalRows'] = $data['totalRows'];
 
@@ -233,12 +247,15 @@ function editSocioRequest() {
 
         // User has posted the article edit form: save the article changes
         if ( !$socio = Socio::getById( (int)$_POST['id'] ) ) {
-            header( "Location: admin.php?error=articleNotFound" );
+            header( "Location: admin.php?error=socioNotFound" );
             return;
         }
 
         $socio->storeFormValues( $_POST );
         $socio->update();
+
+        sendConfirmationEmail($socio);
+
         header( "Location: admin.php?action=showRequests" );
 
 
@@ -268,3 +285,17 @@ function alert_log( $data ){
     echo 'alert("Message: '.$data.'");';
     echo '</script>';
 }
+
+
+
+function sendConfirmationEmail($socio) {
+    $headers="From: <info@clubeuropeo.it>\n";
+    $msg_body = "Buongiorno " . $socio->firstname . " " . $socio->lastname . ",";
+    $headers .= $msg_body;
+    $oggetto="Iscrizione APPROVATA - Club Europeo Ispra";
+    $corpo="Siamo felici di informarti che la tua iscrizione al Club Europeo Ispra è stata approvata ed sei ora un socio effettivo del club. "
+        . "Nel caso questa mail ti sia arrivata senza che tu abbia richiesto l'iscrizione puoi comunicarlo rispondendo a questo messaggio." . " Club Europeo Ispra.";
+
+    mail($socio->email, $oggetto, $corpo, $headers);
+}
+

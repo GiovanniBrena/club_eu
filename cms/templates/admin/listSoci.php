@@ -1,5 +1,11 @@
 <?php include "templates/include/header.php" ?>
 
+<?php
+$state = isset( $_GET['state'] ) ? $_GET['state'] : "";
+if($state=="duplicated") {echo "<script type='text/javascript'>alert('Il socio risulta già REGISTRATO');</script>";}
+else if($state=="existingEmail") {echo "<script type='text/javascript'>alert('La email inserita risulta già PRESENTE');</script>";}
+?>
+
     <div id="adminHeader">
           <span class="section-back-container">
               <a href="admin.php?action=dashboard">
@@ -17,12 +23,12 @@
     <button id="add-socio-btn" class="btn-orange" onclick="location='admin.php?action=newSocio'"><span><img id="new-socio-icon" src="images/add.png" height="12px">   NUOVO SOCIO</span></button>
     <span style="position: absolute; right: 0">
             <div class='dropdown' id='year-dropdown'>
-                <div class='dropdown-button'><?php $year = isset( $_GET['year'] ) ? $_GET['year'] : "2016"; echo $year ?></div>
+                <div class='dropdown-button'><?php $year = isset( $_GET['year'] ) ? $_GET['year'] : "2016"; echo ($year . "/" . ($year-1)); ?></div>
                 <span class='triangle'>&#9660;</span>
                 <ul class='dropdown-selection'>
-                    <li class="year-selector">2016</li>
-                    <li class="year-selector">2015</li>
-                    <li class="year-selector">2014</li>
+                    <li class="year-selector" ><?php $date = date('Y', time()); echo ($date . "/" . ($date-1));?></li>
+                    <li class="year-selector"><?php $date = date('Y', time()); echo ($date-1 . "/" . ($date-2));?></li>
+                    <li class="year-selector"><?php $date = date('Y', time()); echo ($date-2 . "/" . ($date-3));?></li>
                 </ul>
             </div>
         <button id="requests-btn" class="btn-orange" onclick="location='admin.php?action=showRequests'">GESTISCI RICHIESTE <span class="badge"><?php echo $results["requestsTotalRows"]+$results["renewsTotalRows"] ?> </span></button>

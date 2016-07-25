@@ -1,10 +1,9 @@
-<?php
-$to      = 'brena.giovanni@gmail.com';
-$subject = 'CLUB EU Mail Test';
-$message = 'Ciao questa è una prova di mail';
-$headers = 'From: webmaster@clubeu.com' . "\r\n" .
-    'Reply-To: webmaster@clubeu.com' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
+<?
+$headers="From: <info@clubeuropeo.it>\n";
+$msg_body = "Questo messaggio è un test";
+$headers .= $msg_body;
+$oggetto="Test invio mail";
+$corpo="Mail di test !!!";
 
-echo (mail($to, $subject, $message, $headers));
+mail("brena.giovanni@gmail.com", $oggetto, $corpo, $headers);
 ?>

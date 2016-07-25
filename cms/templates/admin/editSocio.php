@@ -303,7 +303,7 @@
         </ul>
 
         <div class="buttons">
-            <input type="submit" name="saveChanges" value="SALVA" />
+            <input type="submit" name="saveChanges" value="SALVA"/>
         </div>
 
     </form>

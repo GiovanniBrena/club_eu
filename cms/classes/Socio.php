@@ -141,13 +141,39 @@ class Socio
 
     public static function getById( $id ) {
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-        $sql = "SELECT * FROM socio WHERE id = :id";
+        $sql = "SELECT * FROM socio WHERE id=:id";
         $st = $conn->prepare( $sql );
         $st->bindValue( ":id", $id, PDO::PARAM_INT );
         $st->execute();
         $row = $st->fetch();
         $conn = null;
         if ( $row ) return new Socio( $row );
+    }
+
+    public static function existsEmail($email) {
+        $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+        $sql = "SELECT * FROM socio WHERE email=:email";
+        $st = $conn->prepare( $sql );
+        $st->bindValue( ":email", $email, PDO::PARAM_STR );
+        $st->execute();
+        $row = $st->fetch();
+        $conn = null;
+        if ( $row ) return true;
+        else return false;
+    }
+
+    public static function existsNameSurnamePhone($firstname, $lastname, $phone) {
+        $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+        $sql = "SELECT * FROM socio WHERE firstname=:firstname AND lastname=:lastname AND phone=:phone";
+        $st = $conn->prepare( $sql );
+        $st->bindValue( ":firstname", $firstname, PDO::PARAM_STR );
+        $st->bindValue( ":lastname", $lastname, PDO::PARAM_STR );
+        $st->bindValue( ":phone", $phone, PDO::PARAM_STR );
+        $st->execute();
+        $row = $st->fetch();
+        $conn = null;
+        if ( $row ) return true;
+        else return false;
     }
 
 
@@ -200,9 +226,9 @@ class Socio
         return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
     }
 
-    public static function getListByStateAndYear($stateId=0, $year=0, $numRows=1000000, $order="id DESC") {
-        $dateMin = new DateTime($year."-01-01 00:00:00");
-        $dateMax = new DateTime($year."-12-31 00:00:00");
+    public static function getListByStateAndYear($stateId=0, $yearMin=0, $yearMax, $numRows=1000000, $order="id DESC") {
+        $dateMin = new DateTime($yearMin."-10-01 00:00:00");
+        $dateMax = new DateTime($yearMax."-10-01 00:00:00");
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
         $sql = "SELECT * FROM socio WHERE state=:state AND date_create>:date_min AND date_create<:date_max ORDER BY id ASC";
         $st = $conn->prepare( $sql );
@@ -309,10 +335,16 @@ class Socio
 
 
     public static function getNextPersonalId(){
+        $year = date('Y', time());
+        $dateMin = new DateTime($year."-01-01 00:00:00");
+        $dateMax = new DateTime($year."-12-31 00:00:00");
+
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-        $sql = "SELECT personal_id FROM socio
+        $sql = "SELECT personal_id FROM socio WHERE date_create>:date_min AND date_create<:date_max
             ORDER BY personal_id DESC LIMIT 1";
         $st = $conn->prepare( $sql );
+        $st->bindValue( ":date_min", $dateMin->format("Y-m-d"), PDO::PARAM_STR );
+        $st->bindValue( ":date_max", $dateMax->format("Y-m-d"), PDO::PARAM_STR );
         $st->execute();
         $list = array();
 
