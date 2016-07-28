@@ -41,6 +41,9 @@ switch ( $action ) {
     case 'editSocioRequest':
         editSocioRequest();
         break;
+    case 'listActivities':
+        listActivities();
+        break;
     default:
         showDashboard();
 }
@@ -299,3 +302,29 @@ function sendConfirmationEmail($socio) {
     mail($socio->email, $oggetto, $corpo, $headers);
 }
 
+
+
+
+///------------------- ACTIVITIES ----------------///
+
+
+function listActivities() {
+    
+    $results = array();
+    $data = Attivita::getList();
+    $results['attivita'] = $data['results'];
+    $results['totalRows'] = $data['totalRows'];
+
+    $results['pageTitle'] = "Gestione Attività";
+
+    if ( isset( $_GET['error'] ) ) {
+        if ( $_GET['error'] == "articleNotFound" ) $results['errorMessage'] = "Error: Article not found.";
+    }
+
+    if ( isset( $_GET['status'] ) ) {
+        if ( $_GET['status'] == "changesSaved" ) $results['statusMessage'] = "Your changes have been saved.";
+        if ( $_GET['status'] == "articleDeleted" ) $results['statusMessage'] = "Article deleted.";
+    }
+
+    require( TEMPLATE_PATH . "/admin/listActivities.php" );
+}

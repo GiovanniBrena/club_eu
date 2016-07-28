@@ -6,7 +6,7 @@
 
 <div style="text-align: center">
 <button class="btn-orange dashboard-btn" onclick="location='admin.php?action=listSoci&year=<?php $date = date('Y', time()); echo $date;?>'"><i class="fa fa-user fa-icon-big"></i></br>Gestione SOCI</button>
-<button class="btn-orange dashboard-btn"><i class="fa fa-calendar fa-icon-big"></i></br>Gestione EVENTI</button>
+<button class="btn-orange dashboard-btn" onclick="location='admin.php?action=listActivities'"><i class="fa fa-calendar fa-icon-big"></i></br>Gestione EVENTI</button>
 <button class="btn-orange dashboard-btn"><i class="fa fa-book fa-icon-big"></i></br>Gestione CORSI</button>
 <button class="btn-orange dashboard-btn"><i class="fa fa-envelope-o fa-icon-big"></i></br>NEWSLETTER</button>
 </div>

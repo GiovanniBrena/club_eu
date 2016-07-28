@@ -497,3 +497,12 @@ tr:hover {
     background:#f6f6f6;
     transition:background .2s ease;
 }
+
+
+.activity-thumb-sm {
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+}
+
+.activity-thumb-sm img {height: 150px;}
