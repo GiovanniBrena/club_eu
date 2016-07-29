@@ -146,7 +146,8 @@ $( document ).ready(function() {
 
         $(".year-selector").click(function () {
             var year = this.textContent;
-            location.replace('admin.php?action=listSoci&year='+year);
+            data = year.split("/");
+            location.replace('admin.php?action=listSoci&year='+data[0]);
         });
 
 });

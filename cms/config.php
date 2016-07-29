@@ -17,6 +17,7 @@ define( "HOMEPAGE_NUM_ARTICLES", 5 );
 define( "ADMIN_USERNAME", "admin" );
 define( "ADMIN_PASSWORD", "mypass" );
 require( CLASS_PATH . "/Socio.php" );
+require( CLASS_PATH . "/Attivita.php" );
 
 function handleException( $exception ) {
     echo "Sorry, a problem occurred. Please try later.";

@@ -298,7 +298,6 @@
 
         <div class="buttons">
             <input type="submit" name="saveChanges" value="APPROVA" />
-            <input type="submit" formnovalidate name="cancel" value="indietro" />
         </div>
 
     </form>

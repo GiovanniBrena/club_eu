@@ -165,3 +165,44 @@ form {
 
 .modal-dialog { max-width: 600px;}
 .modal-title { margin:24px 0;}
+
+
+.activity-row {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  margin: 64px 0;
+}
+.activity-row-date {
+  background-color: #00a0b0;
+  position: absolute;
+  left: 0;
+  top: 52px;
+  bottom: 52px;
+  width: 236px;
+  text-align: center;
+}
+
+.activity-row-date h1 { font-size: 128px; padding-bottom: 0; margin-bottom: 0;}
+.activity-row-date h4 { font-size: 32px; margin-top: 0; padding-top: 0;}
+
+.activity-row-img {
+  background-color: #00a0b0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 400px;
+  height: 260px;
+  overflow: hidden;
+}
+
+.activity-row-info {
+  background-color: #4cae4c;
+  position: absolute;
+  right: 180px;
+  left: 180px;
+  bottom: 16px;
+  top: 16px;
+  padding: 16px 226px 16px 68px;
+  overflow: hidden;
+}

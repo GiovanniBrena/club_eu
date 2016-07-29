@@ -1,5 +1,10 @@
 <?php include "templates/include/header.php" ?>
 
+    <script>
+        $(".main-menu").hide();
+    </script>
+
+    <h1 class="section-title">Login</h1>
     <form action="admin.php?action=login" method="post" style="width: 50%;">
         <input type="hidden" name="login" value="true" />
 
