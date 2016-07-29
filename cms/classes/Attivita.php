@@ -95,12 +95,6 @@ class Attivita
     }
 
 
-    /**
-     * Returns an Article object matching the given article ID
-     *
-     * @param int The article ID
-     * @return Article|false The article object, or false if the record was not found or there was a problem
-     */
 
     public static function getById( $id ) {
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
@@ -114,13 +108,6 @@ class Attivita
     }
 
 
-    /**
-     * Returns all (or a range of) Article objects in the DB
-     *
-     * @param int Optional The number of rows to return (default=all)
-     * @param string Optional column by which to order the articles (default="publicationDate DESC")
-     * @return Array|false A two-element array : results => array, a list of Article objects; totalRows => Total number of articles
-     */
 
     public static function getList( $numRows=1000000, $order="id DESC" ) {
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
@@ -191,7 +178,7 @@ class Attivita
 */
 
     /**
-     * Inserts the current Article object into the database, and sets its ID property.
+     * Inserts the current Attivita object into the database, and sets its ID property.
      */
 
     public function insert() {
@@ -234,7 +221,7 @@ class Attivita
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
         $sql = "UPDATE attivita SET title_it=:title_it, title_en=:title_en, desc_it=:desc_it, desc_en=:desc_en, date_act=:date_act, price_socio=:price_socio, price_ext=:price_ext,
             deadline=:deadline, place_total=:place_total, place_available=:place_available, date_create=:date_create, icon_url=:icon_url, attach_url:=attach_url, state=:state 
-            WHERE id = :id";
+            WHERE id=:id";
 
         $st = $conn->prepare ( $sql );
         $st->bindValue( ":title_it", $this->title_it, PDO::PARAM_STR );

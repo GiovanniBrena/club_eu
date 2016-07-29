@@ -44,6 +44,9 @@ switch ( $action ) {
     case 'listActivities':
         listActivities();
         break;
+    case 'editActivity':
+        editActivity();
+        break;
     default:
         showDashboard();
 }
@@ -327,4 +330,44 @@ function listActivities() {
     }
 
     require( TEMPLATE_PATH . "/admin/listActivities.php" );
+}
+
+
+function editActivity() {
+
+    $results = array();
+    $results['pageTitle'] = "Edit Attività";
+    $results['formAction'] = "editActivity";
+
+
+    if ( isset( $_POST['saveChanges'] ) ) {
+        
+        if ( !$activity = Attivita::getById( (int)$_POST['id'] ) ) {
+            header( "Location: admin.php?error=articleNotFound" );
+            return;
+        }
+/*
+        else if ( Attivita::existsNameSurnamePhone((string)$_POST['firstname'], (string)$_POST['lastname'] , (string)$_POST['phone'])) {
+            console_log("SOCIO DUPLICATO !!");
+            return;
+        }
+*/
+         
+
+        $activity->storeFormValues( $_POST );
+        $activity->update();
+        header( "Location: admin.php?action=listActivities" );
+
+
+    } elseif ( isset( $_POST['cancel'] ) ) {
+
+        // User has cancelled their edits: return to the article list
+        header( "Location: admin.php" );
+    } else {
+
+        // User has not posted the article edit form yet: display the form
+        $results['attivita'] = Attivita::getById( (int)$_GET['id'] );
+        require( TEMPLATE_PATH . "/admin/editActivity.php" );
+    }
+
 }

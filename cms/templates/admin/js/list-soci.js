@@ -141,7 +141,7 @@ $( document ).ready(function() {
             if (!event.target.classList.contains('dropdown-button')) {
                 activeDropdown.element.classList.remove('active');
             }
-        }
+        };
 
 
         $(".year-selector").click(function () {

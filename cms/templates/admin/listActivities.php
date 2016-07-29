@@ -47,8 +47,8 @@
     </tr>
 
     <?php foreach ( $results['attivita'] as $activity ) { ?>
-
         <tr class="activity-row">
+            <td style="display: none"><?php echo $activity->id ?></td>
             <td><div class="activity-thumb-sm"><img src="<?php echo $activity->icon_url?>"/></div></td>
             <td><?php echo $activity->title_it?></td>
             <td><?php $dateAct = new DateTime($activity->date_act); echo $dateAct->format('d-m-Y')?></td>
@@ -59,5 +59,5 @@
     ?>
 </table>
 
-<script type="text/javascript" src="templates/admin/js/list-activities.js"></script>
+<script type="text/javascript" src="templates/admin/js/listActivities.js"></script>
 <script src="templates/admin/js/sorttable.js"></script>
