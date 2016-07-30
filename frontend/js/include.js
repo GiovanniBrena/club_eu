@@ -4,5 +4,6 @@
 
 
 $(document).ready(function() {
-    $("#main-menu").load("include/main-menu.html");
+    $("#header-container").load("templates/header-carousel.html");
+    $("#main-menu").load("templates/main-menu.html");
 });
