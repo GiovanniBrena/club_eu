@@ -82,16 +82,10 @@ class Attivita
         // Store all the parameters
         $this->__construct( $params );
 
-        /*
-        // Parse and store the publication date
-        if ( isset($params['date_of_birth']) ) {
-            $date_of_birth = explode ( '-', $params['date_of_birth'] );
-
-            if ( count($date_of_birth) == 3 ) {
-                list ( $y, $m, $d ) = $date_of_birth;
-                $this->date_of_birth = mktime ( 0, 0, 0, $m, $d, $y );
-            }
-        }*/
+        // upload file if necessary
+        if($params['icon']) {
+            
+        }
     }
 
 
@@ -183,10 +177,10 @@ class Attivita
 
     public function insert() {
 
-        // Insert the Article
+        // Insert the Attività
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-        $sql = "INSERT INTO attivita ( title_it, title_en, desc_it, desc_en, date_act, price_socio, price_ext, deadline, place_total, place_available, date_create, icon_url, attach_url, state) 
-            VALUES (:title_it, :title_en, :desc_it, :desc_en, :date_act, :price_socio, :price_ext, :deadline, :place_total, :place_available, :date_create, :icon_url, :attach_url, :state)";
+        $sql = "INSERT INTO attivita ( title_it, title_en, desc_it, desc_en, date_act, price_socio, price_ext, deadline, place_total, place_available, icon_url, attach_url, state) 
+            VALUES (:title_it, :title_en, :desc_it, :desc_en, :date_act, :price_socio, :price_ext, :deadline, :place_total, :place_available, :icon_url, :attach_url, :state)";
         $st = $conn->prepare ( $sql );
         $st->bindValue( ":title_it", $this->title_it, PDO::PARAM_STR );
         $st->bindValue( ":title_en", $this->title_en, PDO::PARAM_STR );
@@ -197,8 +191,8 @@ class Attivita
         $st->bindValue( ":price_ext", $this->price_ext, PDO::PARAM_STR);
         $st->bindValue( ":deadline", $this->deadline, PDO::PARAM_STR);
         $st->bindValue( ":place_total", $this->place_total, PDO::PARAM_STR);
-        $st->bindValue( ":place_available", $this->place_available, PDO::PARAM_STR);
-        $st->bindValue( ":date_create", $this->date_create, PDO::PARAM_STR);
+        $st->bindValue( ":place_available", $this->place_total, PDO::PARAM_STR);
+        //$st->bindValue( ":date_create", $this->date_create, PDO::PARAM_STR);
         $st->bindValue( ":icon_url", $this->icon_url, PDO::PARAM_STR);
         $st->bindValue( ":attach_url", $this->attach_url, PDO::PARAM_STR);
         $st->bindValue( ":state", $this->state, PDO::PARAM_INT);

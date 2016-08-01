@@ -2,7 +2,7 @@
  * Created by giovanni on 28/07/16.
  */
 
-$.ajax({    //create an ajax request to load_page.php
+$.ajax({    
     type: "GET",
     url: "../cms/data_requests/get_activities.php",
     dataType: "html",   //expect html to be returned                

@@ -236,6 +236,7 @@ form {
   height: 160px;
   width: 480px;
   border: 3px solid #212852;
+  overflow: hidden;
 }
 
 .single-activity-day {
@@ -246,12 +247,16 @@ form {
   width: 152px;
   background-color: #ffffff;
   border-right: 3px solid #212852;
+  text-align: center;
 }
+
+.single-activity-day h1 {font-size: 78px; padding-bottom: 0; margin-bottom: 0;}
+.single-activity-day h4 { font-size: 20px; margin-top: 0; padding-top: 0;}
 
 .single-activity-title {
   height: 100%;
   width: 100%;
-  padding-left: 140px;
+  padding-left: 172px;
   background-color: rgb(225, 235, 246);
 }
 
@@ -287,6 +292,8 @@ form {
 }
 
 .single-activity-rec h3 { margin-top: 35px; font-weight: bold;}
+
+
 
 .single-activity-info-container {
   padding: 96px 64px 48px 64px;

@@ -1,4 +1,5 @@
-<?php include "templates/include/header.php" ?>
+<?php include "templates/include/header.php";
+$activityIconPath = "../cms/resources/activity_icon/"?>
 
 <div id="adminHeader">
           <span class="section-back-container">
@@ -49,8 +50,8 @@
     <?php foreach ( $results['attivita'] as $activity ) { ?>
         <tr class="activity-row">
             <td style="display: none"><?php echo $activity->id ?></td>
-            <td><div class="activity-thumb-sm"><img src="<?php echo $activity->icon_url?>"/></div></td>
-            <td><?php echo $activity->title_it?></td>
+            <td><div class="activity-thumb-sm"><img src="<?php echo $activityIconPath.$activity->id.".jpg"?>"/></div></td>
+            <td><?php echo htmlspecialchars($activity->title_it, ENT_COMPAT, 'ISO-8859-1')?></td>
             <td><?php $dateAct = new DateTime($activity->date_act); echo $dateAct->format('d-m-Y')?></td>
             <td><?php $dateCreate = new DateTime($activity->date_create); echo $dateCreate->format('d-m-Y')?></td>
         </tr>

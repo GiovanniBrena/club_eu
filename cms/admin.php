@@ -7,6 +7,7 @@
  */
 
 require( "config.php" );
+
 session_start();
 $action = isset( $_GET['action'] ) ? $_GET['action'] : "";
 $username = isset( $_SESSION['username'] ) ? $_SESSION['username'] : "";
@@ -44,8 +45,14 @@ switch ( $action ) {
     case 'listActivities':
         listActivities();
         break;
+    case 'newActivity':
+        newActivity();
+        break;
     case 'editActivity':
         editActivity();
+        break;
+    case 'deleteActivity':
+        deleteActivity();
         break;
     default:
         showDashboard();
@@ -292,6 +299,16 @@ function alert_log( $data ){
     echo '</script>';
 }
 
+function debug_view ( $what ) {
+    echo '<pre>';
+    if ( is_array( $what ) )  {
+        print_r ( $what );
+    } else {
+        var_dump ( $what );
+    }
+    echo '</pre>';
+}
+
 
 
 function sendConfirmationEmail($socio) {
@@ -333,6 +350,38 @@ function listActivities() {
 }
 
 
+function newActivity() {
+
+    $results = array();
+    $results['pageTitle'] = "New Activity";
+    $results['formAction'] = "newActivity";
+
+    if ( isset( $_POST['saveChanges'] ) ) {
+
+            // User has posted the socio edit form: save the new socio
+            $activity = new Attivita;
+            $activity->storeFormValues($_POST);
+            $activity->insert();
+        
+            uploadIconFile();
+        
+            header("Location: admin.php?action=listActivities");
+
+
+    } elseif ( isset( $_POST['cancel'] ) ) {
+
+        // User has cancelled their edits: return to the article list
+        header( "Location: admin.php" );
+    } else {
+
+        // User has not posted the article edit form yet: display the form
+        $results['attivita'] = new Attivita;
+        require( TEMPLATE_PATH . "/admin/editActivity.php" );
+    }
+
+}
+
+
 function editActivity() {
 
     $results = array();
@@ -352,7 +401,6 @@ function editActivity() {
             return;
         }
 */
-         
 
         $activity->storeFormValues( $_POST );
         $activity->update();
@@ -370,4 +418,61 @@ function editActivity() {
         require( TEMPLATE_PATH . "/admin/editActivity.php" );
     }
 
+}
+
+
+function deleteActivity() {
+
+    if ( !$activity = Attivita::getById( (int)$_GET['activityId'] ) ) {
+        header( "Location: admin.php?error=articleNotFound" );
+        return;
+    }
+
+    $activity->delete();
+    header( "Location: admin.php?action=listActivities");
+}
+
+
+
+function uploadIconFile(){
+    // settiamo alcune variabili coinvolte nello script:
+// 1) settiamo la cartella in cui fare l'upload
+    $cartella_upload ="../resources/activity_icon/";
+
+// 2) settiamo un array in cui indichiamo il tipo di file che consentiamo l'upload
+// in questo esempio solo immagini
+    $tipi_consentiti = array("gif","png","jpeg","jpg");
+
+// 3) settiamo la dimensione massima del file (1048576 byte = 1Mb)
+    $max_byte = 100000;
+
+
+// se il form è stato inviato
+    if (isset($_POST['saveChanges']) and isset($_FILES["icon"])) {
+        // verifichiamo che l'utente abbia selezionato un file
+        if (trim($_FILES["icon"]["name"]) == '') {
+            echo 'Non hai selezionato nessun file!';
+        } // verifichiamo che il file è stato caricato
+        else if (!is_uploaded_file($_FILES["icon"]["tmp_name"]) or $_FILES["icon"]["error"] > 0) {
+            echo 'Si sono verificati problemi nella procedura di upload!';
+        } // verifichiamo che il tipo è fra quelli consentiti
+        else if (!in_array(strtolower(end(explode('.', $_FILES["icon"]["name"]))), $tipi_consentiti)) {
+            echo 'Il file che si desidera uplodare non è fra i tipi consentiti!';
+        } // verifichiamo che la dimensione del file non eccede quella massima
+        else if ($_FILES["icon"]["size"] > $max_byte) {
+            echo 'Il file che si desidera uplodare eccede la dimensione massima!';
+        } // verifichiamo che la cartella di destinazione settata esista
+        else if (!is_dir($cartella_upload)) {
+            echo 'La cartella in cui si desidera salvare il file non esiste!';
+        } // verifichiamo che la cartella di destinazione abbia i permessi di scrittura
+        else if (!is_writable($cartella_upload)) {
+            echo "La cartella in cui fare l'upload non ha i permessi!";
+        } // verifichiamo il successo della procedura di upload nella cartella settata
+        else if (!move_uploaded_file($_FILES["icon"]["tmp_name"], $cartella_upload . $_FILES["icon"]["name"])) {
+            echo 'Ops qualcosa è andato storto nella procedura di upload!';
+        } // altrimenti significa che è andato tutto ok
+        else {
+            echo 'Upload eseguito correttamente!';
+        }
+    }
 }

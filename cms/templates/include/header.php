@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+      <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
     <title><?php echo htmlspecialchars( $results['pageTitle'] )?></title>
 <!--<link href="bootstrap.min.css" rel="stylesheet">-->
 <link rel="stylesheet" type="text/css" href="admin-style.css" />

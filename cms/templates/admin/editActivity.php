@@ -32,11 +32,12 @@ if ($activity->id == null) {
         <input type="hidden" name="state" value="<?php echo $activity->state ?>"/>
         <input type="hidden" name="icon_url" value="<?php echo $activity->icon_url ?>"/>
         <input type="hidden" name="attach_url" value="<?php echo $activity->attach_url ?>"/>
+        <input type="hidden" name="place_available" value="<?php echo $activity->place_available ?>"/>
         
         <ul>
             <li>
                 <label for="title_it">Titolo ITA</label>
-                <input type="text" name="title_it" id="title_it" placeholder="Titolo ITA" maxlength="255" value="<?php echo htmlspecialchars($activity->title_it)?>"/>
+                <input type="text" name="title_it" id="title_it" placeholder="Titolo ITA" maxlength="255" value="<?php echo htmlspecialchars($activity->title_it, ENT_COMPAT, 'ISO-8859-1')?>"/>
             </li>
 
             <li>
@@ -46,7 +47,7 @@ if ($activity->id == null) {
 
             <li>
                 <label for="desc_it">Descrizione ITA</label>
-                <textarea name="desc_it" id="desc_it" placeholder="Descrizione ITA" required rows="10"><?php echo ( $activity->desc_it )?></textarea>
+                <textarea name="desc_it" id="desc_it" placeholder="Descrizione ITA" required rows="10"><?php echo htmlspecialchars( $activity->desc_it, ENT_COMPAT, 'ISO-8859-1')?></textarea>
             </li>
 
             <li>
@@ -79,6 +80,11 @@ if ($activity->id == null) {
                 <input type="number" name="place_total" id="place_total" placeholder="Numero Posti Totali" required maxlength="255" value="<?php echo htmlspecialchars( $activity->place_total )?>"/>
             </li>
 
+            <li>
+                <label for="icon">Event Image</label>
+                <input type="file" name="icon" id="icon" accept="image/*">
+            </li>
+
         </ul>
 
         <div class="buttons">
@@ -88,7 +94,7 @@ if ($activity->id == null) {
     </form>
 
 <?php if ( $results['attivita']->id ) { ?>
-    <p><a href="admin.php?action=deleteSocio&amp;socioId=<?php echo $activity->id ?>" onclick="return confirm('Eliminare definitivamente la attività?')">Elimina Attività</a></p>
+    <p><a href="admin.php?action=deleteActivity&amp;activityId=<?php echo $activity->id ?>" onclick="return confirm('Eliminare definitivamente la attività?')">Elimina Attività</a></p>
 <?php } ?>
 
 

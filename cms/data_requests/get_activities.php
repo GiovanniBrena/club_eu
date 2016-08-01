@@ -29,8 +29,8 @@ foreach ( $results['attivita'] as $activity ) {
     $response = $response . "<div class=\"row activity-row\">
           <a href=\"activity.html?". $activity->id ."\">
           <div class=\"activity-row-info\">
-                <h3>" . strtoupper($activity->title_it) . "</h3>
-                <p>" . $activity->desc_it . "</p>
+                <h3>" . htmlentities($activity->title_it, ENT_COMPAT, 'ISO-8859-1') . "</h3>
+                <p>" . htmlentities($activity->desc_it, ENT_COMPAT, 'ISO-8859-1') . "</p>
           </div>
           <div class=\"activity-row-date\">
                 <h1>" . $day . "</h1>
