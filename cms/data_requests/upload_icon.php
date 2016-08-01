@@ -10,11 +10,11 @@
     $tipi_consentiti = array("gif","png","jpeg","jpg");
 
 // 3) settiamo la dimensione massima del file (1048576 byte = 1Mb)
-    $max_byte = 1000000;
+    $max_byte = 100000;
 
 
 // se il form è stato inviato
-    if (isset($_POST['uploadIcon']) and isset($_FILES["icon"])) {
+    if (isset($_POST['saveChanges']) and isset($_FILES["icon"])) {
         // verifichiamo che l'utente abbia selezionato un file
         if (trim($_FILES["icon"]["name"]) == '') {
             echo 'Non hai selezionato nessun file!';
@@ -41,4 +41,5 @@
             echo 'Upload eseguito correttamente!';
         }
     }
-else {echo "error";}
+
+

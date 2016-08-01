@@ -25,11 +25,12 @@ if ($activity->id == null) {
     <div class="errorMessage"><?php echo $results['errorMessage'] ?></div>
 <?php } ?>
 
-    <form action="../cms/data_requests/upload_icon.php" method="post" enctype="multipart/form-data" id="upload-icon-form">
-        <img src=""/>
-        <input type="file" name="icon">
-        <input class="buttons" type="submit" name="uploadIcon" value="Upload file">
+    <form id="imageform" method="post" enctype="multipart/form-data" action='ajaximage.php'>
+        Upload image <input type="file" name="photoimg" id="photoimg" />
     </form>
+
+    <div id='preview'>
+    </div>
 
     <form action="admin.php?action=<?php echo $results['formAction']?>" method="post">
 
