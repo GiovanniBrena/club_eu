@@ -34,6 +34,10 @@ form {
   margin: 0 0 64px 0;
 }
 
+.container-fluid {
+  background-color: rgb(253,245,196);
+}
+
 .carousel {
   background-color: white;
   margin-top: 50px;
@@ -158,6 +162,17 @@ form {
   margin-top: 50px;
 }
 
+.indirizzo {
+  margin-top: 80px;
+  margin-left: -120px;
+  background-color: white;
+  padding: 20px;
+}
+
+.linea {
+  border: 1px solid black;
+}
+
 
 .modal {
   text-align: center;
@@ -260,9 +275,15 @@ form {
 }
 
 .elenco-corsi {
-  margin-top: 150px;
+  margin-top: 200px;
   min-height: 300px;
   margin-bottom: 150px;
+}
+
+.elenco-completo {
+  border: 2px solid #212852;
+  padding: 17px;
+  margin-bottom: 30px;
 }
 
 .lingue {

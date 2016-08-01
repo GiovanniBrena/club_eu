@@ -56,9 +56,42 @@
           <div class="col-md-8 col-md-offset-2 text-center tit-pag-center">
             <h1>dove siamo</h1>
             </div>
-            <div class="col-md-12 img-responsive">
+
+            <div class="col-md-8 col-md-offset-1">
+              <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+              <div style='overflow:hidden;height:440px;width:94%;border:3px solid white;'>
+                <div id='gmap_canvas' style='height:440px;width:700px;'>
+                </div>
+                <div>
+                  <small>
+                    <a href="http://embedgooglemaps.com">									google maps html							</a>
+                  </small>
+                </div>
+                <div>
+                  <small>
+                    <a href="http://www.multihostersreview.com/">foxleech premium account</a>
+                  </small>
+                </div>
+                <style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
+              </div>
+              <script type='text/javascript'>function init_map(){var myOptions = {zoom:13,center:new google.maps.LatLng(45.804903,8.623646699999995),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(45.804903,8.623646699999995)});infowindow = new google.maps.InfoWindow({content:'<strong>Club Europeo</strong><br>via esperia 20, ispra<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
+            </div>
+            <div class="col-md-3 text-center indirizzo">
+              <div class="col-md-12">
+                <h3>Via Esperia XX,</br>21027 Ispra (VA)</h3>
+                <h6>Indirizzo</h6>
+              </div>
+              <div class="col-md-6 col-md-offset-3 linea">
+              </div>
+              <div class="col-md-12">
+                <h6>Orario</h6>
+                <h3>Martedì e Giovedì</br>10:00-12:00</h3>
+              </div>
+            </div>
+            <!--<div class="col-md-12 img-responsive">
               <img src="img/dovesiamo.svg"/>
             </div>
+          -->
           </div>
       </div>
     </div>
