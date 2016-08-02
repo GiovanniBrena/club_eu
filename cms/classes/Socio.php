@@ -267,7 +267,7 @@ class Socio
         //if ( !is_null( $this->id ) ) trigger_error ( "Socio::insert(): Attempt to insert a Socio object that already has its ID property set (to $this->id).", E_USER_ERROR );
         
 
-        // Insert the Article
+        // Insert the Socio
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
         $sql = "INSERT INTO socio ( personal_id, firstname, lastname, date_of_birth, nationality, address, cap, city, phone, email, positionId, state ) VALUES ( :personal_id, :firstname, :lastname, :date_of_birth, :nationality, :address, :cap, :city, :phone, :email, :positionId, :state )";
         $st = $conn->prepare ( $sql );

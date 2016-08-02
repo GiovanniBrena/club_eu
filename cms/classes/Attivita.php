@@ -82,25 +82,13 @@ class Attivita
         // Store all the parameters
         $this->__construct( $params );
 
-        /*
-        // Parse and store the publication date
-        if ( isset($params['date_of_birth']) ) {
-            $date_of_birth = explode ( '-', $params['date_of_birth'] );
-
-            if ( count($date_of_birth) == 3 ) {
-                list ( $y, $m, $d ) = $date_of_birth;
-                $this->date_of_birth = mktime ( 0, 0, 0, $m, $d, $y );
-            }
-        }*/
+        // upload file if necessary
+        if($params['icon']) {
+            
+        }
     }
 
 
-    /**
-     * Returns an Article object matching the given article ID
-     *
-     * @param int The article ID
-     * @return Article|false The article object, or false if the record was not found or there was a problem
-     */
 
     public static function getById( $id ) {
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
@@ -114,13 +102,6 @@ class Attivita
     }
 
 
-    /**
-     * Returns all (or a range of) Article objects in the DB
-     *
-     * @param int Optional The number of rows to return (default=all)
-     * @param string Optional column by which to order the articles (default="publicationDate DESC")
-     * @return Array|false A two-element array : results => array, a list of Article objects; totalRows => Total number of articles
-     */
 
     public static function getList( $numRows=1000000, $order="id DESC" ) {
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
@@ -191,15 +172,15 @@ class Attivita
 */
 
     /**
-     * Inserts the current Article object into the database, and sets its ID property.
+     * Inserts the current Attivita object into the database, and sets its ID property.
      */
 
     public function insert() {
 
-        // Insert the Article
+        // Insert the Attività
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-        $sql = "INSERT INTO attivita ( title_it, title_en, desc_it, desc_en, date_act, price_socio, price_ext, deadline, place_total, place_available, date_create, icon_url, attach_url, state) 
-            VALUES (:title_it, :title_en, :desc_it, :desc_en, :date_act, :price_socio, :price_ext, :deadline, :place_total, :place_available, :date_create, :icon_url, :attach_url, :state)";
+        $sql = "INSERT INTO attivita ( title_it, title_en, desc_it, desc_en, date_act, price_socio, price_ext, deadline, place_total, place_available, icon_url, attach_url, state) 
+            VALUES (:title_it, :title_en, :desc_it, :desc_en, :date_act, :price_socio, :price_ext, :deadline, :place_total, :place_available, :icon_url, :attach_url, :state)";
         $st = $conn->prepare ( $sql );
         $st->bindValue( ":title_it", $this->title_it, PDO::PARAM_STR );
         $st->bindValue( ":title_en", $this->title_en, PDO::PARAM_STR );
@@ -210,8 +191,8 @@ class Attivita
         $st->bindValue( ":price_ext", $this->price_ext, PDO::PARAM_STR);
         $st->bindValue( ":deadline", $this->deadline, PDO::PARAM_STR);
         $st->bindValue( ":place_total", $this->place_total, PDO::PARAM_STR);
-        $st->bindValue( ":place_available", $this->place_available, PDO::PARAM_STR);
-        $st->bindValue( ":date_create", $this->date_create, PDO::PARAM_STR);
+        $st->bindValue( ":place_available", $this->place_total, PDO::PARAM_STR);
+        //$st->bindValue( ":date_create", $this->date_create, PDO::PARAM_STR);
         $st->bindValue( ":icon_url", $this->icon_url, PDO::PARAM_STR);
         $st->bindValue( ":attach_url", $this->attach_url, PDO::PARAM_STR);
         $st->bindValue( ":state", $this->state, PDO::PARAM_INT);
@@ -234,7 +215,7 @@ class Attivita
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
         $sql = "UPDATE attivita SET title_it=:title_it, title_en=:title_en, desc_it=:desc_it, desc_en=:desc_en, date_act=:date_act, price_socio=:price_socio, price_ext=:price_ext,
             deadline=:deadline, place_total=:place_total, place_available=:place_available, date_create=:date_create, icon_url=:icon_url, attach_url:=attach_url, state=:state 
-            WHERE id = :id";
+            WHERE id=:id";
 
         $st = $conn->prepare ( $sql );
         $st->bindValue( ":title_it", $this->title_it, PDO::PARAM_STR );
