@@ -219,6 +219,8 @@ form {
 }
 
 .activity-row-info h3 { border-bottom: 2px solid #212852; font-weight: bold;}
+.activity-row-info p { margin-bottom: 32px; overflow: hidden; }
+
 
 .single-activity-container {
   margin: 128px 0;

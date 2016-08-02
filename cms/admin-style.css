@@ -506,3 +506,8 @@ tr:hover {
 }
 
 .activity-thumb-sm img {height: 150px;}
+
+.preview {
+    height: 200px;
+    margin: 16px;
+}

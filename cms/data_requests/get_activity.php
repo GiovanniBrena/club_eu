@@ -35,27 +35,26 @@ $arr = array(
     'deadline' => $dateDeadline->format('d-m-Y')
 );
 
-$iconUrl = "../cms/resources/activity_icon/".$activityId.".jpg";
 $month = $months[$dateAct->format('m')];
 
 $response = "" . "<div class=\"row\">
             <div class=\"col-md-6\">
                 <div class=\"single-activity-container\">
                     <div class=\"single-activity-img\">
-                        <img src=\"$iconUrl\"/>
+                        <img src=\"$activity->icon_url\"/>
                     </div>
                     <div class=\"single-activity-header\">
                         <div class=\"single-activity-day\">
                                         <h1>" . $arr['day'] . "</h1>
                                         <h4>$month</h4>
                         </div>
-                        <div class=\"single-activity-title\"><h3>" . htmlentities($activity->title_it, ENT_COMPAT, 'ISO-8859-1') . "</h3></div>
+                        <div class=\"single-activity-title\"><h3>" . $activity->title_it . "</h3></div>
                     </div>
                 </div>
             </div>
             <div class=\"col-md-6\">
                 <div class=\"single-activity-desc-container\">
-                    <p id=\"act-desc\">" . htmlentities($activity->desc_it, ENT_COMPAT, 'ISO-8859-1') . "</p>
+                    <p id=\"act-desc\">" . $activity->desc_it . "</p>
                     <h4>Prezzo soci: $activity->price_socio €</h4>
                     <h4>Prezzo non soci: $activity->price_ext €</h4>
                     <h4>Posti disponibili: $activity->place_total</h4>

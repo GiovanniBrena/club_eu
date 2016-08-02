@@ -40,7 +40,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="admin.php?action=listActivities">
                     <i class="fa fa-calendar fa-lg fa-menu"></i>
                     <span class="nav-text">EVENTI</span>
                 </a>

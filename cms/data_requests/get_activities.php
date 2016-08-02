@@ -24,13 +24,17 @@ foreach ( $results['attivita'] as $activity ) {
     $date = new DateTime($activity->date_act);
     $day = $date->format('d');
     $month = $months[$date->format('m')];
+    $desc_it = $activity->desc_it;
+    if(strlen($desc_it)>300) {
+        $desc_it=substr($desc_it,0,300)." (...)";
+    }
 
 
     $response = $response . "<div class=\"row activity-row\">
           <a href=\"activity.html?". $activity->id ."\">
           <div class=\"activity-row-info\">
-                <h3>" . htmlentities($activity->title_it, ENT_COMPAT, 'ISO-8859-1') . "</h3>
-                <p>" . htmlentities($activity->desc_it, ENT_COMPAT, 'ISO-8859-1') . "</p>
+                <h3>" . $activity->title_it . "</h3>
+                <p>" . $desc_it . "</p>
           </div>
           <div class=\"activity-row-date\">
                 <h1>" . $day . "</h1>

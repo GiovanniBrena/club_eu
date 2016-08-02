@@ -25,18 +25,29 @@ if ($activity->id == null) {
     <div class="errorMessage"><?php echo $results['errorMessage'] ?></div>
 <?php } ?>
 
-    <form id="imageform" method="post" enctype="multipart/form-data" action='ajaximage.php'>
-        Upload image <input type="file" name="photoimg" id="photoimg" />
+    <form id="imageform" method="post" enctype="multipart/form-data" action='scripts/upload_activity_icon.php' style="text-align: center">
+        <h4>Immagine Evento</h4>
+        <input type="file" name="photoimg" id="photoimg" style="width: 100%" />
+        <div id='preview' style="text-align: center">
+            <?php if($activity->icon_url!="") echo "<img id='preview-img' src='".$activity->icon_url."' class='preview'>";?>
+        </div>
     </form>
 
-    <div id='preview'>
-    </div>
+<!--
+    <form id="imageform" method="post" enctype="multipart/form-data" action='scripts/upload_activity_attach.php' style="text-align: center">
+        <h4>Allegato</h4>
+        <input type="file" name="photoimg" id="photoimg" />
+        <div id='preview2' style="text-align: center">
+            <?php if($activity->attach_url!="") echo "<img id='preview2-img' src='".$activity->attach_url."' class='preview'>";?>
+        </div>
+    </form>
+-->
 
     <form action="admin.php?action=<?php echo $results['formAction']?>" method="post">
 
         <input type="hidden" name="id" value="<?php echo $activity->id ?>"/>
         <input type="hidden" name="state" value="<?php echo $activity->state ?>"/>
-        <input type="hidden" name="icon_url" value="<?php echo $activity->icon_url ?>"/>
+        <input type="hidden" id="icon-url" name="icon_url" value="<?php echo $activity->icon_url ?>"/>
         <input type="hidden" name="attach_url" value="<?php echo $activity->attach_url ?>"/>
         <input type="hidden" name="place_available" value="<?php echo $activity->place_available ?>"/>
         
@@ -86,11 +97,6 @@ if ($activity->id == null) {
                 <input type="number" name="place_total" id="place_total" placeholder="Numero Posti Totali" required maxlength="255" value="<?php echo htmlspecialchars( $activity->place_total )?>"/>
             </li>
 
-            <li>
-                <label for="icon">Event Image</label>
-                <input type="file" name="icon" id="icon" accept="image/*">
-            </li>
-
         </ul>
 
         <div class="buttons">
@@ -103,7 +109,9 @@ if ($activity->id == null) {
     <p><a href="admin.php?action=deleteActivity&amp;activityId=<?php echo $activity->id ?>" onclick="return confirm('Eliminare definitivamente la attività?')">Elimina Attività</a></p>
 <?php } ?>
 
-
+    <script type="text/javascript" src="http://ajax.googleapis.com/
+ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.form.js"></script>
     <script type="text/javascript" src="templates/admin/js/editActivity.js"></script>
 
 <?php include "templates/include/footer.php" ?>

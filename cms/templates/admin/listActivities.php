@@ -16,6 +16,7 @@ $activityIconPath = "../cms/resources/activity_icon/"?>
 
 <div style="position: relative;">
     <button id="add-socio-btn" class="btn-orange" onclick="location='admin.php?action=newActivity'"><span><img id="new-socio-icon" src="images/add.png" height="12px">NUOVA ATTIVITA'</span></button>
+    <!--
     <span style="position: absolute; right: 0">
             <div class='dropdown' id='year-dropdown'>
                 <div class='dropdown-button'><?php $year = isset( $_GET['year'] ) ? $_GET['year'] : "2016"; echo ($year . "/" . ($year-1)); ?></div>
@@ -28,6 +29,7 @@ $activityIconPath = "../cms/resources/activity_icon/"?>
             </div>
         <button id="requests-btn" class="btn-orange" onclick="location='admin.php'">TBD</button>
     </span>
+    -->
 </div>
 
 <?php if ( isset( $results['errorMessage'] ) ) { ?>
@@ -42,15 +44,15 @@ $activityIconPath = "../cms/resources/activity_icon/"?>
 <table id="activity-table" class="sortable">
     <tr>
         <th></th>
-        <th>Titolo Attività<input id="act-title-field" class="inline-input"></th>
-        <th>Data<input id="act-date-field" class="inline-input"></th>
-        <th>Data creazione<input id="act-create-field" class="inline-input"></th>
+        <th>Titolo Attività<!--<input id="act-title-field" class="inline-input">--></th>
+        <th>Data<!--<input id="act-date-field" class="inline-input">--></th>
+        <th>Data creazione<!--<input id="act-create-field" class="inline-input">--></th>
     </tr>
 
     <?php foreach ( $results['attivita'] as $activity ) { ?>
         <tr class="activity-row">
             <td style="display: none"><?php echo $activity->id ?></td>
-            <td><div class="activity-thumb-sm"><img src="<?php echo $activityIconPath.$activity->id.".jpg"?>"/></div></td>
+            <td><div class="activity-thumb-sm"><img src="<?php echo $activity->icon_url?>"/></div></td>
             <td><?php echo htmlspecialchars($activity->title_it, ENT_COMPAT, 'ISO-8859-1')?></td>
             <td><?php $dateAct = new DateTime($activity->date_act); echo $dateAct->format('d-m-Y')?></td>
             <td><?php $dateCreate = new DateTime($activity->date_create); echo $dateCreate->format('d-m-Y')?></td>
