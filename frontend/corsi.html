@@ -34,7 +34,7 @@
   </div>
   <!--end-->
 
-    <div class="container-fluid main main" style="background-color: rgb(225, 235, 246); height: 1000px;">
+    <div class="container-fluid main main" style="background-color: rgb(225, 235, 246); padding-top: 0">
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-md-offset-2 text-center tit-pag-center">
@@ -59,8 +59,9 @@
               I corsi si svolgono nelle aule del Club House, Via Esperia, Ispra.</p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-5 col-sm-offset-2 costo">
+
+        <div class="corsi-modulo-container">
+          <div class="corsi-costo">
             <div class="col-sm-12">
               <h3>ISCRIZIONE CORSI DI LINGUA 2016/17</h3>
             </div>
@@ -89,38 +90,319 @@
             </div>
           </div>
 
-          <a href="#">
-            <div class="col-sm-5 text-center white-box">
+          <div class="corsi-modulo">
+          <a href="../cms/resources/modules/EnrolmentApplicationLanguageCourses2015_16.pdf" target="_blank">
               <h1>COMPILA IL MODULO DI ISCRIZIONE</h1>
-            </div>
           </a>
-
+          </div>
 
         </div>
       </div>
     </div>
 
-    <div class="container-fluid">
       <div class="container elenco-corsi">
         <div class="row">
-          <a href="#">
-            <div class="col-md-6 col-md-offset-3 text-center elenco-completo">
-              <h3>Scarica l'elenco completo dei corsi</h3>
-            </div>
+          <h3> DETTAGLIO CORSI </h3>
+          <a href="../cms/resources/modules/CorsiLingue_2015-16.pdf" target="_blank">
+            <div class="btn-transp"> Scarica l'elenco dei corsi</div>
           </a>
-          <div class="col-md-6 col-md-offset-3 lingue">
-            <a href="#"><div class="col-sm-12"><h3>Inglese</h3></div></a>
-            <a href="#"><div class="col-sm-12"><h3>Russo</h3></div></a>
-            <a href="#"><div class="col-sm-12"><h3>Italiano</h3></div></a>
-            <a href="#"><div class="col-sm-12"><h3>Spagnolo</h3></div></a>
-            <a href="#"><div class="col-sm-12"><h3>Giapponese</h3></div></a>
-            <a href="#"><div class="col-sm-12"><h3>Tedesco</h3></div></a>
+
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                    Italiano</a>
+                </h4>
+              </div>
+              <div id="collapse1" class="panel-collapse collapse">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Livello</th>
+                    <th>Insegnante</th>
+                    <th>Orario</th>
+                    <th>Luogo</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Grammatica/Lessico livello A1</td>
+                    <td>Aldo Poli</td>
+                    <td>Giovedi 10.00-11.00</td>
+                    <td>Sala Azalee</td>
+                  </tr>
+                  <tr>
+                    <td>Grammatica/Conversazione livello A2</td>
+                    <td>Simona Marras</td>
+                    <td>Martedì 10.00-12.00</td>
+                    <td>Sala Azalee</td>
+                  </tr>
+                  <tr>
+                    <td>Conversazione livello B1</td>
+                    <td>Maria Giovanna Sapia</td>
+                    <td>Martedì 11.00-12.00</td>
+                    <td>Sala Primule</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                    Inglese</a>
+                </h4>
+              </div>
+              <div id="collapse2" class="panel-collapse collapse">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Livello</th>
+                    <th>Insegnante</th>
+                    <th>Orario</th>
+                    <th>Luogo</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Grammatica/Lessico livello A1</td>
+                    <td>Aldo Poli</td>
+                    <td>Giovedi 10.00-11.00</td>
+                    <td>Sala Azalee</td>
+                  </tr>
+                  <tr>
+                    <td>Grammatica/Conversazione livello A2</td>
+                    <td>Simona Marras</td>
+                    <td>Martedì 10.00-12.00</td>
+                    <td>Sala Azalee</td>
+                  </tr>
+                  <tr>
+                    <td>Conversazione livello B1</td>
+                    <td>Maria Giovanna Sapia</td>
+                    <td>Martedì 11.00-12.00</td>
+                    <td>Sala Primule</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                    Francese</a>
+                </h4>
+              </div>
+              <div id="collapse3" class="panel-collapse collapse">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Livello</th>
+                    <th>Insegnante</th>
+                    <th>Orario</th>
+                    <th>Luogo</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Grammatica/Lessico livello A1</td>
+                    <td>Aldo Poli</td>
+                    <td>Giovedi 10.00-11.00</td>
+                    <td>Sala Azalee</td>
+                  </tr>
+                  <tr>
+                    <td>Grammatica/Conversazione livello A2</td>
+                    <td>Simona Marras</td>
+                    <td>Martedì 10.00-12.00</td>
+                    <td>Sala Azalee</td>
+                  </tr>
+                  <tr>
+                    <td>Conversazione livello B1</td>
+                    <td>Maria Giovanna Sapia</td>
+                    <td>Martedì 11.00-12.00</td>
+                    <td>Sala Primule</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                    Spagnolo</a>
+                </h4>
+              </div>
+              <div id="collapse4" class="panel-collapse collapse">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Livello</th>
+                    <th>Insegnante</th>
+                    <th>Orario</th>
+                    <th>Luogo</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Grammatica/Lessico livello A1</td>
+                    <td>Aldo Poli</td>
+                    <td>Giovedi 10.00-11.00</td>
+                    <td>Sala Azalee</td>
+                  </tr>
+                  <tr>
+                    <td>Grammatica/Conversazione livello A2</td>
+                    <td>Simona Marras</td>
+                    <td>Martedì 10.00-12.00</td>
+                    <td>Sala Azalee</td>
+                  </tr>
+                  <tr>
+                    <td>Conversazione livello B1</td>
+                    <td>Maria Giovanna Sapia</td>
+                    <td>Martedì 11.00-12.00</td>
+                    <td>Sala Primule</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                    Russo</a>
+                </h4>
+              </div>
+              <div id="collapse5" class="panel-collapse collapse">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Livello</th>
+                    <th>Insegnante</th>
+                    <th>Orario</th>
+                    <th>Luogo</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Grammatica/Lessico livello A1</td>
+                    <td>Aldo Poli</td>
+                    <td>Giovedi 10.00-11.00</td>
+                    <td>Sala Azalee</td>
+                  </tr>
+                  <tr>
+                    <td>Grammatica/Conversazione livello A2</td>
+                    <td>Simona Marras</td>
+                    <td>Martedì 10.00-12.00</td>
+                    <td>Sala Azalee</td>
+                  </tr>
+                  <tr>
+                    <td>Conversazione livello B1</td>
+                    <td>Maria Giovanna Sapia</td>
+                    <td>Martedì 11.00-12.00</td>
+                    <td>Sala Primule</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+                    Giapponese</a>
+                </h4>
+              </div>
+              <div id="collapse6" class="panel-collapse collapse">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Livello</th>
+                    <th>Insegnante</th>
+                    <th>Orario</th>
+                    <th>Luogo</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Grammatica/Lessico livello A1</td>
+                    <td>Aldo Poli</td>
+                    <td>Giovedi 10.00-11.00</td>
+                    <td>Sala Azalee</td>
+                  </tr>
+                  <tr>
+                    <td>Grammatica/Conversazione livello A2</td>
+                    <td>Simona Marras</td>
+                    <td>Martedì 10.00-12.00</td>
+                    <td>Sala Azalee</td>
+                  </tr>
+                  <tr>
+                    <td>Conversazione livello B1</td>
+                    <td>Maria Giovanna Sapia</td>
+                    <td>Martedì 11.00-12.00</td>
+                    <td>Sala Primule</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">
+                    Tedesco</a>
+                </h4>
+              </div>
+              <div id="collapse7" class="panel-collapse collapse">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Livello</th>
+                    <th>Insegnante</th>
+                    <th>Orario</th>
+                    <th>Luogo</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Grammatica/Lessico livello A1</td>
+                    <td>Aldo Poli</td>
+                    <td>Giovedi 10.00-11.00</td>
+                    <td>Sala Azalee</td>
+                  </tr>
+                  <tr>
+                    <td>Grammatica/Conversazione livello A2</td>
+                    <td>Simona Marras</td>
+                    <td>Martedì 10.00-12.00</td>
+                    <td>Sala Azalee</td>
+                  </tr>
+                  <tr>
+                    <td>Conversazione livello B1</td>
+                    <td>Maria Giovanna Sapia</td>
+                    <td>Martedì 11.00-12.00</td>
+                    <td>Sala Primule</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+
           </div>
+
+
         </div>
+
+
+
       </div>
-    </div>
 
-
+  <div class="jumbotron" id="footer-container">
+  </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

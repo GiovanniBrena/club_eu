@@ -34,6 +34,19 @@ form {
   margin: 0 0 64px 0;
 }
 
+.btn-transp {
+  margin: 20px 0;
+  padding: 16px 8px;
+  border: 2px solid #212852;
+  text-align: center;
+  font-size: 18px;
+  color: #212852;
+}
+
+.btn-transp:hover { background-color: white;}
+
+
+
 .carousel {
   background-color: white;
   margin-top: 50px;
@@ -119,10 +132,28 @@ form {
   color: white;
 }
 
-.link {
+.biblioteca {
+  background-color: rgb(225, 235, 246);
+}
+
+.biblioteca .col-md-10 {
+  padding-top: 16px;
+  min-height: 300px;
+  margin: 40px 0 40px 40px;
+}
+
+#book-dropdown {width: 300px;}
+
+.link-esterni {
+  padding: 32px 48px;
   background-color: white;
   min-height: 100px;
-  margin-bottom: 50px;
+  text-align: right;
+}
+
+.collaborazioni {
+  padding: 32px 48px;
+  min-height: 100px;
 }
 
 .azzurro {
@@ -162,6 +193,10 @@ form {
   background-color: #0f0f0f;
 }
 
+.linea-full {width: 100%;
+  height: 1px;
+  background-color: #0f0f0f;}
+
 .box-bianco {
   background-color: white;
   padding: 32px 24px;
@@ -172,13 +207,57 @@ form {
   position: relative;
   top: 70px;
   right: 140px;
+  border: 2px solid #212852;
 }
 
 .box-contatti{
   position: relative;
   top:70px;
   left: 70px;
+  border: 2px solid #212852;
 }
+
+
+.corsi-modulo-container {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 300px;
+  margin: 56px 0 0 0;
+}
+.corsi-costo {
+  border: 2px solid #212852;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 24px 0 24px 48px;
+}
+.corsi-modulo {
+  border: 2px solid #212852;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  padding: 24px 48px;
+}
+
+.elenco-corsi {
+  padding: 36px 0;
+  width: 660px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.elenco-corsi table, .elenco-corsi td {
+  padding: 8px;
+}
+
+.panel-default>.panel-heading, .panel-default>.panel-collapse {
+  color: #212852;
+  background-color: white;
+  border: 2px solid #212852;
+}
+
 
 
 .modal {
@@ -329,6 +408,13 @@ form {
 #header-container {padding: 0;
   margin: 0;}
 
+#footer-container {
+  margin: 0;
+  background-color: rgb(250,237,135);
+  padding: 32px 0;
+}
+#footer-container p {font-size: 14px;}
+
 .carousel-inner {width: 100%; height: 100%; position: relative;}
 
 .header-logo {position: relative; top: 0; margin-top: 48px;}
@@ -367,4 +453,40 @@ form {
   border: none;
   z-index: 11;
   position: relative;
+}
+
+
+.ddmenu {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+.ddmenu.open {
+  background: #212852;
+  color: #fff;
+}
+
+.ddmenu ul {
+  position: absolute;
+  padding: 5px 0px;
+  top: 100%;
+  border: 2px solid #212852;
+  left: -2px;
+  right: -2px;
+  display: none;
+  background: #fff;
+  list-style: none;
+  z-index: 1000;
+}
+.ddmenu ul li { font-size: 0.9em; }
+
+.ddmenu ul li a {
+  text-decoration: none;
+  display: block;
+  color: #212852;
+  padding: 7px 15px;
+}
+.ddmenu ul li a:hover {
+  background: #e7f0f7;
 }

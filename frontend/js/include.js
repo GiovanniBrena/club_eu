@@ -6,4 +6,5 @@
 $(document).ready(function() {
     $("#header-container").load("templates/header-carousel.html");
     $("#main-menu").load("templates/main-menu.html");
+    $("#footer-container").load("templates/footer.html");
 });
