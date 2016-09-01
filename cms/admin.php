@@ -165,6 +165,17 @@ function editSocio() {
 
         // User has cancelled their edits: return to the article list
         header( "Location: admin.php" );
+
+    } elseif ( isset( $_POST['renewSocio'] ) ) {
+        if ( !$socio = Socio::getById( (int)$_POST['id'] ) ) {
+            header( "Location: admin.php?error=articleNotFound" );
+            return;
+        }
+
+        $socio->storeFormValues( $_POST );
+        $socio->renew();
+        header( "Location: admin.php?action=listSoci" );
+
     } else {
 
         console_log("EDIT socio");
@@ -190,8 +201,12 @@ function deleteSocio() {
 
 
 function listSoci() {
-    $year = isset( $_GET['year'] ) ? $_GET['year'] : "";
-    if($year==null) {$year = date('Y', time());}
+    if (isset( $_GET['year'] )) {
+        $year=$_GET['year'];    
+    }
+     else {$year=date('Y', time());}
+
+
     $results = array();
     $data = Socio::getListByStateAndYear(0,$year-1, $year);
     $results['soci'] = $data['results'];

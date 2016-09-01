@@ -232,8 +232,8 @@ class Socio
     }
 
     public static function getListByStateAndYear($stateId=0, $yearMin=0, $yearMax, $numRows=1000000, $order="id DESC") {
-        $dateMin = new DateTime($yearMin."-10-01 00:00:00");
-        $dateMax = new DateTime($yearMax."-10-01 00:00:00");
+        $dateMin = new DateTime($yearMin."-09-01 00:00:00");
+        $dateMax = new DateTime($yearMax."-08-31 00:00:00");
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
         $sql = "SELECT * FROM socio WHERE state=:state AND date_create>:date_min AND date_create<:date_max ORDER BY id ASC";
         $st = $conn->prepare( $sql );
@@ -320,6 +320,36 @@ class Socio
         $conn = null;
     }
 
+    public function renew() {
+
+        // Does the Article object have an ID?
+        if ( is_null( $this->id ) ) trigger_error ( "Article::update(): Attempt to update an Article object that does not have its ID property set.", E_USER_ERROR );
+
+        // Update the Article
+        $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+        $sql = "INSERT INTO socio ( personal_id, firstname, lastname, date_of_birth, nationality, address, cap, city, phone, email, positionId, state ) VALUES ( :personal_id, :firstname, :lastname, :date_of_birth, :nationality, :address, :cap, :city, :phone, :email, :positionId, :state )";
+
+        $st = $conn->prepare ( $sql );
+        //$st->bindValue( ":id", $this->id, PDO::PARAM_INT );
+        $st->bindValue( ":personal_id", self::getNextPersonalId(), PDO::PARAM_INT );
+        $st->bindValue( ":firstname", $this->firstname, PDO::PARAM_STR );
+        $st->bindValue( ":lastname", $this->lastname, PDO::PARAM_STR );
+        $st->bindValue( ":date_of_birth", $this->date_of_birth, PDO::PARAM_STR);
+        $st->bindValue( ":nationality", $this->nationality, PDO::PARAM_STR);
+        $st->bindValue( ":address", $this->address, PDO::PARAM_STR);
+        $st->bindValue( ":cap", $this->cap, PDO::PARAM_STR);
+        $st->bindValue( ":city", $this->city, PDO::PARAM_STR);
+        $st->bindValue( ":phone", $this->phone, PDO::PARAM_STR);
+        $st->bindValue( ":email", $this->email, PDO::PARAM_STR);
+        $st->bindValue( ":positionId", $this->positionId, PDO::PARAM_INT);
+        $st->bindValue( ":state", $this->state, PDO::PARAM_INT);
+        //$st->bindValue( ":date_create", date('Y-m-d',time()), PDO::PARAM_STR);
+        $st->execute();
+        $conn = null;
+    }
+
+
+
 
     /**
      * Deletes the current Article object from the database.
@@ -341,8 +371,16 @@ class Socio
 
     public static function getNextPersonalId(){
         $year = date('Y', time());
-        $dateMin = new DateTime($year."-01-01 00:00:00");
-        $dateMax = new DateTime($year."-12-31 00:00:00");
+        $month = date('m', time());
+
+        if($month<9) {
+            $dateMin = new DateTime($year-1 . "-09-01 00:00:00");
+            $dateMax = new DateTime($year."-08-31 00:00:00");
+        }
+        else {
+            $dateMin = new DateTime($year."-09-01 00:00:00");
+            $dateMax = new DateTime($year+1 . "-08-31 00:00:00");
+        }
 
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
         $sql = "SELECT personal_id FROM socio WHERE date_create>:date_min AND date_create<:date_max

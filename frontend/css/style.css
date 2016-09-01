@@ -156,6 +156,30 @@ form {
   margin-top: 50px;
 }
 
+.linea {
+  height: 1px;
+  width: 120px;
+  background-color: #0f0f0f;
+}
+
+.box-bianco {
+  background-color: white;
+  padding: 32px 24px;
+  max-width: 300px;
+}
+
+.indirizzo {
+  position: relative;
+  top: 70px;
+  right: 140px;
+}
+
+.box-contatti{
+  position: relative;
+  top:70px;
+  left: 70px;
+}
+
 
 .modal {
   text-align: center;
@@ -168,9 +192,9 @@ form {
 .activity-row {
   position: relative;
   width: 100%;
-  min-width: 940px;
-  height: 340px;
-  margin: 64px 0;
+  min-width: 600px;
+  height: 300px;
+  margin: 64px 0 72px 0;
 }
 
 .activity-row hr {
@@ -184,12 +208,12 @@ form {
   left: 0;
   top: 52px;
   bottom: 52px;
-  width: 236px;
+  width: 200px;
   text-align: center;
   border: 3px solid #212852;
 }
 
-.activity-row-date h1 { font-size: 128px; padding-bottom: 0; margin-bottom: 0;}
+.activity-row-date h1 { font-size: 94px; padding-bottom: 0; margin-bottom: 0;}
 .activity-row-date h4 { font-size: 32px; margin-top: 0; padding-top: 0;}
 
 .activity-row-img {
@@ -197,8 +221,8 @@ form {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 400px;
-  height: 260px;
+  width: 360px;
+  height: 220px;
   overflow: hidden;
   border: 3px solid #212852;
   text-align: center;

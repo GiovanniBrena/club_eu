@@ -1,4 +1,7 @@
-<?php include "templates/include/header.php" ?>
+<?php include "templates/include/header.php";
+
+$isOld=0;
+?>
 
     <div id="adminHeader">
           <span class="section-back-container">
@@ -15,7 +18,14 @@
     $personalId = Socio::getNextPersonalId();?>
     <h1 class="section-title">Nuovo Socio</h1> <?php 
 } else {
-    $personalId = $results['socio']->personal_id;?>
+    $personalId = $results['socio']->personal_id;
+    $yN = date('Y', time());
+    $mN = date('m', time());
+    $y = date('Y', strtotime($results['socio']->date_create));
+    $m = date('m', strtotime($results['socio']->date_create));
+
+    if(($y==$yN && $mN>9 && $m<9)||($y==$yN-1 && $m<9)||($y<$yN-1)) {$isOld=1;}
+    ?>
     <h1 class="section-title">Modifica Socio </h1><?php
 }
 ?>
@@ -24,6 +34,7 @@
 
     <form action="admin.php?action=<?php echo $results['formAction']?>" method="post">
         <input type="hidden" name="id" value="<?php echo $results['socio']->id ?>"/>
+        <input type="hidden" name="date_create" value="<?php echo $results['socio']->date_create ?>"/>
 
         <?php if ( isset( $results['errorMessage'] ) ) { ?>
             <div class="errorMessage"><?php echo $results['errorMessage'] ?></div>
@@ -302,10 +313,16 @@
 
         </ul>
 
-        <div class="buttons">
-            <input type="submit" name="saveChanges" value="SALVA"/>
+        <?php if($isOld) {?>
+            <div class="buttons" >
+                <input type = "submit" name = "renewSocio" value = "RINNOVA" />
+            </div>
+        <?php }
+        else { ?>
+            <div class="buttons" >
+            <input type = "submit" name = "saveChanges" value = "SALVA" />
         </div>
-
+        <?php } ?>
     </form>
 
 <?php if ( $results['socio']->id ) { ?>
