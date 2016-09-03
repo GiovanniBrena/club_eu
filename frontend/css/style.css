@@ -6,6 +6,11 @@ body {
   width: 100%;
 }
 
+.resize {
+  width: 90%;
+  margin: auto;
+}
+
 h1, h2, h3, h4, h5, h6, p, a {
   color: #212852;
 }
@@ -17,6 +22,7 @@ p {
 
 h1 {
   font-weight: bold;
+
 }
 
 h3 {
@@ -25,15 +31,32 @@ h3 {
 }
 
 h4 {
-  font-weight: bold;
-  font-size: 1.5em;
+  font-weight: lighter;;
+  font-size: 1.4em;
   line-height: 1.55em;
+}
+
+h4 .bold {
+  font-weight: bold;
 }
 
 form {
   margin: 0 0 64px 0;
 }
 
+.float-left {
+  float: left;
+}
+
+.btn-newsletter {
+  float: left;
+    margin-top: 9px;
+    margin-left: 30px;
+}
+
+.btn-newsletter .btn-default {
+      padding: 6px 36px;
+}
 
 .btn-transp {
   margin: 20px 0;
@@ -61,7 +84,7 @@ form {
 
 .club .row .col-md-3 h4 {
   border-bottom: 4px solid #212852;
-  padding-top: 20px;
+  padding-top: 7px;
   margin-bottom: 20px;
 }
 
@@ -98,7 +121,7 @@ form {
 }
 
 .main h1 {
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 .newsletter, .news {
@@ -118,6 +141,10 @@ form {
   background-color: white;
   margin-bottom: 50px;
   padding: 25px 30px 42px 44px;
+}
+
+.activities:hover, .courses:hover {
+  box-shadow: 0 0 4px #212852;
 }
 
 .beneficenza {
@@ -152,13 +179,14 @@ form {
 .link-esterni {
   padding: 32px 48px;
   background-color: white;
-  min-height: 100px;
+  min-height: 300px;
   text-align: right;
 }
 
 .collaborazioni {
+  background-color: rgb(225, 235, 246);
   padding: 32px 48px;
-  min-height: 100px;
+  min-height: 300px;
 }
 
 .azzurro {

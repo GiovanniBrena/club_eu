@@ -37,12 +37,28 @@
 
     <div class="container-fluid main" style="padding-bottom: 0">
       <div class="container">
-        <div class="row">
+        <div class="row resize">
           <div class="col-md-5 bacheca">
             <div class="row newsletter">
               <div class="col-xs-12" style="padding: 16px 36px">
                 <h1>Newsletter</h1>
-                <a href="../cms/resources/newsletter/Maggio16.pdf" target="_blank">
+                <h4 class="float-left">Vedi Newsletter</h4>
+                <div class="btn-group btn-newsletter">
+                  <a href="../cms/resources/newsletter/Maggio16.pdf" target="_blank" class="btn btn-default" role="button">Maggio 2016</a>
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li class="dropdown-header">Edizioni precedenti</li>
+                    <li class="nl-dd-item"><a href="../cms/resources/newsletter/Marzo-Aprile16.pdf" target="_blank">Marzo - Aprile 2016</a></li>
+                    <li class="nl-dd-item"><a href="../cms/resources/newsletter/Febbraio2016.pdf" target="_blank">Febbraio 2016</a></li>
+                    <li class="nl-dd-item"><a href="../cms/resources/newsletter/DicembreGennaio16.pdf" target="_blank">Dicembre - Gennaio 2016</a></li>
+                    <li class="nl-dd-item"><a href="../cms/resources/newsletter/Novembre15.pdf" target="_blank">Novembre 2015</a></li>
+                    <li class="nl-dd-item"><a href="../cms/resources/newsletter/Settembre-Ottobre15.pdf" target="_blank">Settembre - Ottobre 2015</a></li>
+                  </ul>
+                </div>
+                <!--<a href="../cms/resources/newsletter/Maggio16.pdf" target="_blank">
                   <div class="btn-transp">
                     Maggio 2016
                   </div>
@@ -57,18 +73,17 @@
                     <li class="nl-dd-item"><a href="../cms/resources/newsletter/Novembre15.pdf" target="_blank">Novembre 2015</a></li>
                     <li class="nl-dd-item"><a href="../cms/resources/newsletter/Settembre-Ottobre15.pdf" target="_blank">Settembre - Ottobre 2015</a></li>
                   </ul>
-                </div>
-
+                </div>-->
               </div>
             </div>
-            <!--
+
             <div class="row news">
               <div class="col-xs-12">
                 <h1>News</h1>
                 <p><i>inserire news</i></p>
               </div>
             </div>
-            -->
+
           </div>
 
           <div class="col-md-6 col-md-offset-1">
@@ -81,7 +96,7 @@
               <a href="corsi.html" class="disabled">
                 <div class="col-xs-12 courses">
                   <h1>Corsi di Lingua</h1>
-                  <h4>Il club organizza per i suoi soci viaggi, gite, visite guidate, escursioni, passeggiate, conferenze, incontri culturali... e altro ancora.</h4>
+                  <h4>Il club offre corsi di lingua per i propri iscritti. Consulta la pagina dei corsi per maggiori informazioni.</h4>
                 </div>
               </a>
           </div>
@@ -89,8 +104,8 @@
       </div>
     </div>
 
-
-    <div class="row" style="background-color: rgb(225, 235, 246);">
+<!--
+    <div class="row resize" style="background-color: rgb(225, 235, 246);">
       <div class="col-md-6 beneficenza">
         <div class="col-md-10 col-md-offset-2">
           <div>
@@ -120,7 +135,7 @@
         </div>
       </div>
     </div>
-
+-->
   <div class="row" style="background-color: rgb(253,245,196);">
     <div class="col-md-6 link-esterni">
       <div class="col-md-10 col-md-offset-2">
@@ -138,7 +153,7 @@
       <div class="col-md-10 col-md-offset-0">
         <div>
           <h1>Collaborazioni</h1>
-          <img src="img/collaborazioni.svg" style="width: 100%">
+          <img src="img/collaborazioni.svg" >
           <h4>Scopri le collaborazioni del club</h4>
         </div>
       </div>
