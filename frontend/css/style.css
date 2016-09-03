@@ -36,7 +36,7 @@ h4 {
   line-height: 1.55em;
 }
 
-h4 .bold {
+.bold {
   font-weight: bold;
 }
 
@@ -69,11 +69,17 @@ form {
 
 .btn-transp:hover { background-color: white;}
 
+.facebook a img, .facebook a h4 {
+  float: right;
+}
 
+.facebook img {
+  width: 25px;
+  margin: 10px;
+}
 
 .carousel {
   background-color: white;
-  margin-top: 50px;
   height: 350px;
 }
 
@@ -165,7 +171,8 @@ form {
 }
 
 .biblioteca {
-  background-color: rgb(225, 235, 246);
+      border: 2px solid #212852;
+      background-color: white;
 }
 
 .biblioteca .col-md-10 {
@@ -289,9 +296,6 @@ form {
 
 .elenco-corsi {
   padding: 36px 0;
-  width: 660px;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 .elenco-corsi table, .elenco-corsi td {
@@ -451,7 +455,9 @@ form {
   text-align: center;
 }
 
-#header-container {padding: 0;
+#header-container {
+  background-color: rgb(250,237,135);
+  padding: 0;
   margin: 0;}
 
 #footer-container {
