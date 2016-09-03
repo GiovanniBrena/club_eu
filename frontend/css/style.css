@@ -11,7 +11,7 @@ h1, h2, h3, h4, h5, h6, p, a {
 }
 
 p {
-  font-size: 1.2em;
+  font-size: 1.1em;
   line-height: 1.5em;
 }
 
@@ -34,6 +34,7 @@ form {
   margin: 0 0 64px 0;
 }
 
+
 .btn-transp {
   margin: 20px 0;
   padding: 16px 8px;
@@ -50,7 +51,7 @@ form {
 .carousel {
   background-color: white;
   margin-top: 50px;
-  height: 450px;
+  height: 350px;
 }
 
 .club {
@@ -92,8 +93,12 @@ form {
 
 .main {
   background-color: rgb(253,245,196);
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.main h1 {
+  font-size: 3em;
 }
 
 .newsletter, .news {
@@ -158,7 +163,6 @@ form {
 
 .azzurro {
   background-color: rgb(225, 235, 246);
-  min-height: 400px;
   padding-bottom: 50px;
 }
 .azzurro .row {
@@ -202,6 +206,20 @@ form {
   padding: 32px 24px;
   max-width: 300px;
 }
+
+
+#comitato table {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.1em;
+  border: 2px solid #212852;
+}
+
+#comitato thead { background-color: #212852; color: white; border: none;}
+
+#comitato td, th, tr { padding-top: 16px; padding-bottom: 16px; background-color: transparent; border: 1px solid #212852;}
+
 
 .indirizzo {
   position: relative;
@@ -273,7 +291,7 @@ form {
   width: 100%;
   min-width: 600px;
   height: 300px;
-  margin: 64px 0 72px 0;
+  margin: 24px 0 32px 0;
 }
 
 .activity-row hr {
