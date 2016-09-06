@@ -516,7 +516,7 @@ function editCorso() {
 
     if ( isset( $_POST['saveChanges'] ) ) {
 
-        if ( !$activity = Attivita::getById( (int)$_POST['id'] ) ) {
+        if ( !$activity = Corso::getById( (int)$_POST['id'] ) ) {
             header( "Location: admin.php?error=articleNotFound" );
             return;
         }

@@ -29,7 +29,6 @@
 
 <table id="activity-table" class="sortable">
     <tr>
-        <th></th>
         <th>Lingua<!--<input id="act-title-field" class="inline-input">--></th>
         <th>Livello<!--<input id="act-date-field" class="inline-input">--></th>
         <th>Insegnante<!--<input id="act-create-field" class="inline-input">--></th>
@@ -39,7 +38,7 @@
         <tr class="activity-row">
             <td style="display: none"><?php echo $corso->id ?></td>
             <td><?php echo htmlspecialchars($corso->lang, ENT_COMPAT, 'ISO-8859-1')?></td>
-            <td><?php echo htmlspecialchars($corso->level, ENT_COMPAT, 'ISO-8859-1')?></td>
+            <td><?php echo htmlspecialchars($corso->level_it, ENT_COMPAT, 'ISO-8859-1')?></td>
             <td><?php echo htmlspecialchars($corso->teacher, ENT_COMPAT, 'ISO-8859-1')?></td>
         </tr>
 

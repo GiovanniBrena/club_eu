@@ -165,15 +165,15 @@ class Corso
 */
 
     /**
-     * Inserts the current Attivita object into the database, and sets its ID property.
+     * Inserts the current Corso object into the database, and sets its ID property.
      */
 
     public function insert() {
 
-        // Insert the Attività
+        // Insert the Corso
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-        $sql = "INSERT INTO corso ( level_it, level_en, teacher, when_it, when_en, location, lang, info, data0, data1, data2, state) 
-            VALUES (:level_it, :level_en, :teacher, :when_it, :when_en, :location, :lang, :info, :data0, :data1, :data2, :state)";
+        $sql = "INSERT INTO corso ( level_it, level_en, teacher, when_it, when_en, location, lang, info, data0, data1, data2, state ) 
+            VALUES ( :level_it, :level_en, :teacher, :when_it, :when_en, :location, :lang, :info, :data0, :data1, :data2, :state )";
         $st = $conn->prepare ( $sql );
         $st->bindValue( ":level_it", $this->level_it, PDO::PARAM_STR );
         $st->bindValue( ":level_en", $this->level_en, PDO::PARAM_STR );
