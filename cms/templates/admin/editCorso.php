@@ -84,8 +84,8 @@ if ($corso->id == null) {
             </li>
 
             <li>
-                <label for="info">Info</label>
-                <textarea name="info" id="info" placeholder="info" required rows="6"><?php echo htmlspecialchars( $corso->info )?></textarea>
+                <label for="info">Info (opzionale)</label>
+                <textarea name="info" id="info" placeholder="info" rows="6"><?php echo htmlspecialchars( $corso->info )?></textarea>
             </li>
 
         </ul>

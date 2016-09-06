@@ -9,5 +9,4 @@ $.ajax({
     success: function(response){
         $("#activities-main-container").html(response);
     }
-
 });

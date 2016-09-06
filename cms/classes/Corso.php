@@ -117,6 +117,26 @@ class Corso
         return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
     }
 
+    public static function getListByLanguage( $language, $numRows=1000000, $order="id DESC" ) {
+        $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+        $sql = "SELECT * FROM corso WHERE lang=:lang";
+        $st = $conn->prepare( $sql );
+        $st->bindValue( ":lang", $language, PDO::PARAM_INT );
+        $st->execute();
+        $list = array();
+
+        while ( $row = $st->fetch() ) {
+            $corso = new Corso( $row );
+            $list[] = $corso;
+        }
+
+        // Now get the total number of soci that matched the criteria
+        $sql = "SELECT FOUND_ROWS() AS totalRows";
+        $totalRows = $conn->query( $sql )->fetch();
+        $conn = null;
+        return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
+    }
+
     /*
     public static function getListByState($stateId=0, $numRows=1000000, $order="id DESC") {
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
