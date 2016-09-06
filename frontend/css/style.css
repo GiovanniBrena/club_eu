@@ -529,7 +529,7 @@ form {
   display: none;
   background: #fff;
   list-style: none;
-  z-index: 1000;
+  z-index: 10;
 }
 .ddmenu ul li { font-size: 0.9em; }
 
@@ -542,3 +542,94 @@ form {
 .ddmenu ul li a:hover {
   background: #e7f0f7;
 }
+
+.hamburger-menu {z-index: 2000;}
+
+.hamburger-menu a {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2000;
+  width: 36px;
+  height: 36px;
+  box-sizing: border-box;
+  padding: 11px 0 0 9px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,40,60,.2);
+  tap-highlight-color: transparent;
+}
+.hamburger-menu span {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: rgb(0,40,60);
+  transition: .7s;
+  pointer-events: none;
+}
+.hamburger-menu span:nth-child(2) {
+  margin: 3px 0;
+}
+.hamburger-menu .open {
+  border-color: rgba(255,255,255,.2);
+}
+.hamburger-menu .open span {
+  background: #fff;
+}
+.hamburger-menu .open :first-child {
+  transform: translateY(5px) rotate(-45deg);
+}
+.hamburger-menu  .open :nth-child(2) {
+  transform: rotate(-45deg);
+  opacity: 0;
+}
+.hamburger-menu  .open :last-child {
+  transform: translateY(-5px) rotate(-135deg);
+}
+.hamburger-menu  nav {
+  position: absolute;
+  width: 200px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: rgb(0,40,60);
+  transform: translateX(-100%);
+  transition: .5s;
+}
+.hamburger-menu .open + nav {
+  transform: none;
+}
+.hamburger-menu  code {
+  color: transparent;
+  font-size: 0;
+}
+
+
+
+
+/* media queries */
+
+/* medium screens */
+@media screen and (max-width: 992px) {
+  .bacheca {padding-left: 30px; padding-right: 30px; margin-bottom: 50px;}
+  .link-esterni, .collaborazioni {text-align: center; min-height: 0;}
+  .collaborazioni img {display: none;}
+  .header-logo {width: 100%;}
+  .carousel-inner .item {background-position: center center;}
+   #main-menu .col-md-3 {width: 24%; display: inline-block;}
+}
+
+
+
+/* small screens */
+@media screen and (max-width: 700px) {
+  #header-container { display: none;}
+  .carousel-inner .item {background-size: auto 100%;}
+}
+
+
+
+
+@media screen and (max-width: 440px) {
+  #header-container { display: none;}
+}
+

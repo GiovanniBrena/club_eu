@@ -54,6 +54,15 @@ switch ( $action ) {
     case 'deleteActivity':
         deleteActivity();
         break;
+    case 'listCorsi':
+        listCorsi();
+        break;
+    case 'newCorso':
+        newCorso();
+        break;
+    case 'editCorso':
+        editCorso();
+        break;
     default:
         showDashboard();
 }
@@ -438,4 +447,106 @@ function deleteActivity() {
 
     $activity->delete();
     header( "Location: admin.php?action=listActivities");
+}
+
+
+
+///------------------- COURSES ----------------///
+
+
+function listCorsi() {
+
+    $results = array();
+    $data = Corso::getList();
+    $results['corsi'] = $data['results'];
+    $results['totalRows'] = $data['totalRows'];
+
+    $results['pageTitle'] = "Gestione Corsi";
+
+    if ( isset( $_GET['error'] ) ) {
+        if ( $_GET['error'] == "articleNotFound" ) $results['errorMessage'] = "Error: Article not found.";
+    }
+
+    if ( isset( $_GET['status'] ) ) {
+        if ( $_GET['status'] == "changesSaved" ) $results['statusMessage'] = "Your changes have been saved.";
+        if ( $_GET['status'] == "articleDeleted" ) $results['statusMessage'] = "Article deleted.";
+    }
+
+    require( TEMPLATE_PATH . "/admin/listCorsi.php" );
+}
+
+
+function newCorso() {
+
+    $results = array();
+    $results['pageTitle'] = "New Corso";
+    $results['formAction'] = "newCorso";
+
+    // SAVE FORM
+    if ( isset( $_POST['saveChanges'] ) ) {
+
+        // User has posted the socio edit form: save the new socio
+        $corso = new Corso;
+        $corso->storeFormValues($_POST);
+        $corso->insert();
+
+        header("Location: admin.php?action=listCorsi");
+
+
+    } elseif ( isset( $_POST['cancel'] ) ) {
+
+        // User has cancelled their edits: return to the article list
+        header( "Location: admin.php" );
+    } else {
+
+        // User has not posted the article edit form yet: display the form
+        $results['corso'] = new Corso;
+        require( TEMPLATE_PATH . "/admin/editCorso.php" );
+    }
+
+}
+
+
+function editCorso() {
+
+    $results = array();
+    $results['pageTitle'] = "Edit Corso";
+    $results['formAction'] = "editCorso";
+
+
+    if ( isset( $_POST['saveChanges'] ) ) {
+
+        if ( !$activity = Attivita::getById( (int)$_POST['id'] ) ) {
+            header( "Location: admin.php?error=articleNotFound" );
+            return;
+        }
+
+        $activity->storeFormValues( $_POST );
+        $activity->update();
+        header( "Location: admin.php?action=listCorsi" );
+
+
+    } elseif ( isset( $_POST['cancel'] ) ) {
+
+        // User has cancelled their edits: return to the article list
+        header( "Location: admin.php" );
+    } else {
+
+        // User has not posted the article edit form yet: display the form
+        $results['corso'] = Corso::getById( (int)$_GET['id'] );
+        require( TEMPLATE_PATH . "/admin/editCorso.php" );
+    }
+
+}
+
+
+function deleteCorso() {
+
+    if ( !$corso = Corso::getById( (int)$_GET['corsoId'] ) ) {
+        header( "Location: admin.php?error=articleNotFound" );
+        return;
+    }
+
+    $corso->delete();
+    header( "Location: admin.php?action=listCorsi");
 }

@@ -1,20 +1,9 @@
 /**
- * Created by giovanni on 28/07/16.
+ * Created by Giovanni on 05/09/16.
  */
+document.addEventListener("DOMContentLoaded", function() {
+    "use strict";
 
-
-$(document).ready(function() {
-    $("#header-container").load("templates/header-carousel.html");
-    $("#main-menu").load("templates/main-menu.html", function() {
-        initHambMenu();
-    });
-    $("#footer-container").load("templates/footer.html");
-
-
-});
-
-
-function initHambMenu() {
     var codeElements = document.getElementsByTagName("code")
     var i = codeElements.length;
     var delimiter = "clicking on";
@@ -74,6 +63,7 @@ function initHambMenu() {
         }
 
         function clickCallback(e) {
+            alert("click!");
             switch (self.targetSelector) {
                 case "target" :
                 case "this"   :
@@ -105,4 +95,4 @@ function initHambMenu() {
             params.targetSelector
         )
     })
-}
+});
