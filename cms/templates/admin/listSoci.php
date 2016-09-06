@@ -26,9 +26,13 @@ else if($state=="existingEmail") {echo "<script type='text/javascript'>alert('La
                 <div class='dropdown-button'><?php $year = isset( $_GET['year'] ) ? $_GET['year'] : "2016"; echo (($year-1) . "/" . $year); ?></div>
                 <span class='triangle'>&#9660;</span>
                 <ul class='dropdown-selection'>
-                    <li class="year-selector" ><?php $date = date('Y', time()); echo (($date-1) . "/" . $date);?></li>
-                    <li class="year-selector"><?php $date = date('Y', time()); echo ($date-2 . "/" . ($date-1));?></li>
-                    <li class="year-selector"><?php $date = date('Y', time()); echo ($date-3 . "/" . ($date-2));?></li>
+                    <?php
+                        if($date = date('m', time())>8) {$year = date('Y', time())+1;}
+                        else {$year = date('Y', time());}
+                    ?>
+                    <li class="year-selector" ><?php echo (($year-1) . "/" . $year);?></li>
+                    <li class="year-selector"><?php echo ($year-2 . "/" . ($year-1));?></li>
+                    <li class="year-selector"><?php echo ($year-3 . "/" . ($year-2));?></li>
                 </ul>
             </div>
         <button id="requests-btn" class="btn-orange" onclick="location='admin.php?action=showRequests'">GESTISCI RICHIESTE <span class="badge"><?php echo $results["requestsTotalRows"]+$results["renewsTotalRows"] ?> </span></button>

@@ -42,6 +42,7 @@ if ($corso->id == null) {
                     <option value="">-- select one --</option>
                     <option value="italian">Italian</option>
                     <option value="english">English</option>
+                    <option value="spanish">Spanish</option>
                     <option value="french">French</option>
                     <option value="german">German</option>
                     <option value="russian">Russian</option>
@@ -60,7 +61,7 @@ if ($corso->id == null) {
 
             <li>
                 <label for="title_en">Livello ENG</label>
-                <input type="text" name="level_en" id="level_en" placeholder="Livello EN" required maxlength="255" value="<?php echo htmlspecialchars( $corso->level_en )?>"/>
+                <input type="text" name="level_en" id="level_en" placeholder="Livello EN" maxlength="255" value="<?php echo htmlspecialchars( $corso->level_en )?>"/>
             </li>
 
             <li>

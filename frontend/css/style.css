@@ -543,7 +543,7 @@ form {
   background: #e7f0f7;
 }
 
-.hamburger-menu {z-index: 2000;}
+.hamburger-menu {z-index: 2000; display: none;}
 
 .hamburger-menu a {
   position: absolute;

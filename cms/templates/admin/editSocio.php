@@ -5,7 +5,9 @@ $isOld=0;
 
     <div id="adminHeader">
           <span class="section-back-container">
-              <a href="admin.php?action=listSoci&year=2016">
+              <a href="admin.php?action=listSoci&year=<?php if($date = date('m', time())>8) {echo date('Y', time())+1;}
+              else {echo date('Y', time());}
+              ?>">
                   <i class="fa fa-arrow-left" style="top: 0; color: white; width: auto; padding: 4px"></i>
                   <span>back</span>
               </a>
@@ -24,7 +26,7 @@ $isOld=0;
     $y = date('Y', strtotime($results['socio']->date_create));
     $m = date('m', strtotime($results['socio']->date_create));
 
-    if(($y==$yN && $mN>9 && $m<9)||($y==$yN-1 && $m<9)||($y<$yN-1)) {$isOld=1;}
+    if(($y==$yN && $mN>8 && $m<9)||($y==$yN-1 && $mN>8)||($y<$yN-1)) {$isOld=1;}
     ?>
     <h1 class="section-title">Modifica Socio </h1><?php
 }
