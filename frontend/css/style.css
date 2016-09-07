@@ -543,9 +543,12 @@ form {
   background: #e7f0f7;
 }
 
+
+
+
 .hamburger-menu {z-index: 2000; display: none;}
 
-.hamburger-menu a {
+#hamb-btn {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -556,6 +559,7 @@ form {
   padding: 11px 0 0 9px;
   border-radius: 50%;
   border: 1px solid rgba(0,40,60,.2);
+  background-color: rgb(225, 235, 246);
   tap-highlight-color: transparent;
 }
 .hamburger-menu span {
@@ -570,10 +574,10 @@ form {
   margin: 3px 0;
 }
 .hamburger-menu .open {
-  border-color: rgba(255,255,255,.2);
+  border-color: #000;
 }
 .hamburger-menu .open span {
-  background: #fff;
+  background: #000;
 }
 .hamburger-menu .open :first-child {
   transform: translateY(5px) rotate(-45deg);
@@ -591,10 +595,25 @@ form {
   top: 0;
   bottom: 0;
   left: 0;
-  background: rgb(0,40,60);
+  background: rgb(250,237,135);
+  border-right: 2px solid #212852;
+  padding-left: 0;
+  padding-top: 72px;
   transform: translateX(-100%);
   transition: .5s;
+  z-index: 1000;
 }
+
+.hamburger-menu nav ul {
+  list-style: none;
+  text-align: left;
+  font-size: 1.4em;
+  line-height: 1.8em;
+}
+
+.hamburger-menu .divider {background-color: #212852; height: 1px; width: 100%; margin: 16px 0;}
+
+
 .hamburger-menu .open + nav {
   transform: none;
 }
@@ -602,6 +621,11 @@ form {
   color: transparent;
   font-size: 0;
 }
+
+#header-small {display: none; margin: 16px 0 16px 0; padding: 0 48px;}
+#pre-header-row { padding: 16px; max-width: 1080px; margin-left: auto; margin-right: auto;}
+#pre-header-row span { font-size: 1.2em;}
+#pre-header-row img {margin: 0 0 0 8px; height: 100%;}
 
 
 
@@ -623,13 +647,67 @@ form {
 /* small screens */
 @media screen and (max-width: 700px) {
   #header-container { display: none;}
+  #header-small {display: block;}
   .carousel-inner .item {background-size: auto 100%;}
+  p {
+    font-size: 1em;
+    line-height: 1.5em;
+  }
+
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+
+  }
+
+  h3 {
+    line-height: 1.2em;
+    font-weight: lighter;
+  }
+
+  h4 {
+    font-weight: lighter;;
+    font-size: 1.2em;
+    line-height: 1.55em;
+  }
+  .main h1 {
+    font-size: 2em;
+  }
 }
 
 
 
 
 @media screen and (max-width: 440px) {
+  p {
+    font-size: 0.8em;
+    line-height: 1.5em;
+  }
+
+  h1 {
+    font-size: 1.8em;
+    font-weight: bold;
+
+  }
+
+  h3 {
+    line-height: 1em;
+    font-weight: lighter;
+  }
+
+  h4 {
+    font-weight: lighter;;
+    font-size: 1em;
+    line-height: 1.55em;
+  }
+  .main h1 {
+    font-size: 1.8em;
+  }
   #header-container { display: none;}
+  .newsletter .col-xs-12 {padding: 0;}
+  .btn-newsletter {margin: 0;}
+  #header-small {margin: 8px 0 8px 0; padding: 0 16px;}
+  #menu-large {display: none;}
+  .hamburger-menu {display: block;}
 }
 

@@ -57,7 +57,6 @@ $response = "" . "<div class=\"row\">
                     <p id=\"act-desc\">" . $activity->desc_it . "</p>
                     <h4>Prezzo soci: $activity->price_socio €</h4>
                     <h4>Prezzo non soci: $activity->price_ext €</h4>
-                    <h4>Posti disponibili: $activity->place_total</h4>
                 </div>
                 </div>
         </div>
