@@ -139,6 +139,8 @@ form {
   margin-bottom: -6px;
 }
 
+.newsletter, .news { padding: 16px 32px;}
+
 .news {
   background-color: rgb(250,237,135);
 }
@@ -549,7 +551,7 @@ form {
 .hamburger-menu {z-index: 2000; display: none;}
 
 #hamb-btn {
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 20px;
   z-index: 2000;
@@ -590,7 +592,7 @@ form {
   transform: translateY(-5px) rotate(-135deg);
 }
 .hamburger-menu  nav {
-  position: absolute;
+  position: fixed;
   width: 200px;
   top: 0;
   bottom: 0;
@@ -630,6 +632,9 @@ form {
 
 
 
+
+
+
 /* media queries */
 
 /* medium screens */
@@ -640,6 +645,54 @@ form {
   .header-logo {width: 100%;}
   .carousel-inner .item {background-position: center center;}
    #main-menu .col-md-3 {width: 24%; display: inline-block;}
+
+  /* Club */
+  .indirizzo, .box-contatti { top: 0; right: 0;
+     left: 0; margin: 36px auto;}
+  .indirizzo .linea, .box-contatti .linea {width: 100%;}
+
+
+  /* Iscrizione */
+  .azzurro h1 {display: none;}
+
+  /* Corsi */
+  .biblioteca {width: 450px;
+    margin: 24px auto 24px auto;}
+  .biblioteca .col-md-10 {
+    padding-top: 0;
+    min-height: 0;
+  }
+  .corsi-modulo-container {height: 400px;}
+  .corsi-modulo {left: 0; text-align: center;}
+
+
+  /* Activities */
+  .activity-row-date {
+    top: 75px;
+    bottom: 75px;
+    width: 150px;
+  }
+
+  .activity-row-img {width: 280px;
+    height: 180px;}
+
+  .activity-row-info {
+    right: 80px;
+    left: 100px
+  }
+
+  .activity-row-date h4 { font-size: 1.5em;}
+  .activity-row-date h1 { font-size: 5em;}
+
+  .activity-row-info h3 { font-size: 1.5em;}
+  .activity-row-info p { font-size: 0.9em;}
+
+  .single-activity-desc-container {
+    padding: 0 32px 32px 32px;
+  }
+
+  .single-activity-container {
+    margin: 50px 0;}
 }
 
 
@@ -700,14 +753,141 @@ form {
     font-size: 1em;
     line-height: 1.55em;
   }
+  .main {padding: 0;}
   .main h1 {
     font-size: 1.8em;
   }
+
+
+  /* Home */
+  .bacheca {margin: 24px 0 24px 0; }
+  .activities, .courses { margin-bottom: 24px;}
+  .activities, .courses, .newsletter, .news { padding: 8px 16px;}
+  .container {padding: 0;}
   #header-container { display: none;}
   .newsletter .col-xs-12 {padding: 0;}
   .btn-newsletter {margin: 0;}
   #header-small {margin: 8px 0 8px 0; padding: 0 16px;}
   #menu-large {display: none;}
   .hamburger-menu {display: block;}
+
+
+  /* Club */
+  #google-map {display: none;}
+  .indirizzo {margin: 0 30px;}
+  .indirizzo, .box-contatti {top: 0; right: 0; left: 0; max-width: none; }
+  .indirizzo .linea, .box-contatti .linea {width: 100%;}
+  #comitato {margin: 0;}
+  #comitato table {width: 100%; font-size: 0.8em; padding: 0 15px;}
+
+
+  /* Iscrizione */
+  #iscrizione-main-container {padding-top: 100px; padding-bottom: 18px;}
+  #iscrizione-main-container p {padding-top: 18px;}
+  .azzurro .tit-pag {display: none;}
+  #request-form { padding: 0 18px;}
+
+
+  /* Corsi */
+  .corsi-modulo-container {margin: 0; height: auto; padding-bottom: 32px;}
+  .corsi-costo { padding: 0; margin: 18px; position: relative;}
+  .corsi-modulo {position: relative; margin: 0 18px 18px 18px; padding: 8px 15px; text-align: center;}
+  .biblioteca {
+    margin: 18px 0; width: auto;}
+  .biblioteca .col-md-10 {
+    padding-top: 0;
+    min-height: 0;
+    margin: 0;
+  }
+  #book-dropdown {
+    width: auto;
+  }
+
+
+  /* Activities */
+  .activity-row {
+    position: relative;
+    width: 300px;
+    min-width: 0;
+    height: 240px;
+    margin: 24px auto 32px auto;
+  }
+  .activity-row-img {
+    background-color: #212852;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    height: 160px;
+    overflow: hidden;
+    border: 1px solid #212852;
+    text-align: center;
+  }
+  .activity-row-date {
+    border: 1px solid #212852;
+    height:80px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: auto;
+    width: 100px;
+  }
+
+  .activity-row-date h4 { font-size: 1.2em;}
+  .activity-row-date h1 { font-size: 2.2em;}
+
+
+  .activity-row-info {
+    background-color: #fcf6c6;
+    position: absolute;
+    right: 0;
+    left: 100px;
+    bottom: auto;
+    top: 0;
+    padding: 4px 12px;
+    overflow: hidden;
+    border: 1px solid #212852;
+    height: 100px;
+    width: 200px !important;
+  }
+
+  .activity-row-info p {display: none;}
+  .activity-row-info h3 {border: none; font-size: 1.1em; text-align: center;}
+
+  .single-activity-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100px;
+    /* width: 480px; */
+    border: 1px solid #212852;
+    overflow: hidden;
+    width: 400px;
+  }
+
+  .single-activity-container {
+    margin: 36px auto;
+    height: 400px;
+    width: 400px;
+    /* min-width: 550px; */
+    position: relative;
+    overflow: hidden;
+  }
+  .single-activity-img {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 400px;
+    height: 300px;
+    text-align: center;
+    border: 1px solid #212852;
+    overflow: hidden;
+    background-color: #212852;
+  }
+  .single-activity-desc-container {
+    padding: 18px 32px;
+  }
+
 }
 
