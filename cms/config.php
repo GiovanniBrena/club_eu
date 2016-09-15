@@ -18,6 +18,7 @@ define( "ADMIN_PASSWORD", "mypass" );
 require( CLASS_PATH . "/Socio.php" );
 require( CLASS_PATH . "/Attivita.php" );
 require( CLASS_PATH . "/Corso.php" );
+require( CLASS_PATH . "/Newsletter.php" );
 function handleException( $exception ) {
     echo "Sorry, a problem occurred. Please try later.";
     error_log( $exception->getMessage() );

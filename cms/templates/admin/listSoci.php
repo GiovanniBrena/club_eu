@@ -1,4 +1,9 @@
-<?php include "templates/include/header.php" ?>
+<?php include "templates/include/header.php";
+
+$month = date('m', time());
+if($month<9) {$yearDef = date('Y', time());}
+else {$yearDef = date('Y', time())+1;}
+?>
 
 <?php
 $state = isset( $_GET['state'] ) ? $_GET['state'] : "";
@@ -23,7 +28,7 @@ else if($state=="existingEmail") {echo "<script type='text/javascript'>alert('La
     <button id="add-socio-btn" class="btn-orange" onclick="location='admin.php?action=newSocio'"><span><img id="new-socio-icon" src="images/add.png" height="12px">   NUOVO SOCIO</span></button>
     <span style="position: absolute; right: 0">
             <div class='dropdown' id='year-dropdown'>
-                <div class='dropdown-button'><?php $year = isset( $_GET['year'] ) ? $_GET['year'] : "2016"; echo (($year-1) . "/" . $year); ?></div>
+                <div class='dropdown-button'><?php $year = isset( $_GET['year'] ) ? $_GET['year'] : $yearDef; echo (($year-1) . "/" . $year); ?></div>
                 <span class='triangle'>&#9660;</span>
                 <ul class='dropdown-selection'>
                     <?php

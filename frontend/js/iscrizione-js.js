@@ -5,8 +5,45 @@
 
 
 $( document ).ready(function() {
-
+    $("#btn-request").click(function () {
+        $("#renew-form").hide();
+        $("#request-form").show();
+        $("#btn-request").css("background-color", "white");
+        $("#btn-renew").css("background-color", "transparent");
+    });
+    $("#btn-renew").click(function () {
+        $("#request-form").hide();
+        $("#renew-form").show();
+        $("#btn-renew").css("background-color", "white");
+        $("#btn-request").css("background-color", "transparent");
+    });
 });
+
+
+$("#renew-form").submit(function(e){
+    var email = $('#renewEmailField').val();
+    var personalId = $('#renewIdField').val();
+    $.ajax({
+        url: '../cms/templates/renew-request.php',
+        type:'POST',
+        data:
+        {
+            personal_id: personalId,
+            email: email
+        },
+        success: function(msg)
+        {
+            $("#request-modal-msg").html(msg);
+            $("#requestModal").modal('show');
+
+            document.getElementById("renew-form").reset();
+        }
+    });
+    return false;
+});
+
+
+
 
 $("#request-form").submit(function(e){
     var firstname = $('#firstnameField').val();

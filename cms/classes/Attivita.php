@@ -120,6 +120,27 @@ class Attivita
         return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
     }
 
+    public static function getListVisible($numRows=1000000, $order="id DESC" ) {
+        $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+        $sql = "SELECT * FROM attivita WHERE state=0 ORDER BY date_act DESC";
+        $st = $conn->prepare( $sql );
+        $st->bindValue( ":numRows", $numRows, PDO::PARAM_INT );
+        $st->execute();
+        $list = array();
+
+        while ( $row = $st->fetch() ) {
+            $attivita = new Attivita( $row );
+            $list[] = $attivita;
+        }
+
+        // Now get the total number of soci that matched the criteria
+        $sql = "SELECT FOUND_ROWS() AS totalRows";
+        $totalRows = $conn->query( $sql )->fetch();
+        $conn = null;
+        return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
+    }
+
+
     /*
     public static function getListByState($stateId=0, $numRows=1000000, $order="id DESC") {
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
@@ -243,7 +264,7 @@ class Attivita
 
         // Delete the Article
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-        $st = $conn->prepare ( "DELETE FROM ativita WHERE id = :id LIMIT 1" );
+        $st = $conn->prepare ( "DELETE FROM attivita WHERE id = :id LIMIT 1" );
         $st->bindValue( ":id", $this->id, PDO::PARAM_INT );
         $st->execute();
         $conn = null;

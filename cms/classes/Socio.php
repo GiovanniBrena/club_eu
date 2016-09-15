@@ -155,6 +155,18 @@ class Socio
         if ( $row ) return new Socio( $row );
     }
 
+    public static function getByPersonalIdAndEmail( $id, $email ) {
+        $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+        $sql = "SELECT * FROM socio WHERE personal_id=:personal_id && email=:email";
+        $st = $conn->prepare( $sql );
+        $st->bindValue( ":personal_id", $id, PDO::PARAM_INT );
+        $st->bindValue( ":email", $email, PDO::PARAM_STR );
+        $st->execute();
+        $row = $st->fetch();
+        $conn = null;
+        if ( $row ) return new Socio( $row );
+    }
+
     public static function existsEmail($email) {
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
         $sql = "SELECT * FROM socio WHERE email=:email";
@@ -235,7 +247,7 @@ class Socio
         $dateMin = new DateTime($yearMin."-09-01 00:00:00");
         $dateMax = new DateTime($yearMax."-08-31 00:00:00");
         $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-        $sql = "SELECT * FROM socio WHERE state=:state AND date_create>:date_min AND date_create<:date_max ORDER BY id ASC";
+        $sql = "SELECT * FROM socio WHERE state=:state AND date_create>:date_min AND date_create<:date_max ORDER BY personal_id ASC";
         $st = $conn->prepare( $sql );
         $st->bindValue( ":state", $stateId, PDO::PARAM_INT );
         $st->bindValue( ":date_min", $dateMin->format("Y-m-d"), PDO::PARAM_STR );

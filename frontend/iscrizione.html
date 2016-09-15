@@ -74,7 +74,14 @@
         <div class="row modulo">
           <div class="col-md-8 col-md-offset-2">
             <p class="text-center">Attraverso il modulo di iscrizione online è possibile inviare la richiesta di iscrizione elettronica. L'ufficio del club europeo si occuperà di contattarvi per completare la procedura di iscrizione.</p>
+            </br></br>
+            <div class="text-center">
+              <div class="btn-transp btn-enrol" id="btn-request" style="background-color: white">Iscrizione</div>
+              <div class="btn-transp btn-enrol" id="btn-renew">Rinnovo</div>
+            </div>
+
             </br>
+
             <form id="request-form">
               <div class="form-group">
                 <label for="firstnameField">Nome</label>
@@ -316,6 +323,22 @@
               </div>
               <div class="text-center">
                 <button class="btn btn-default" id="request-submit">Richiedi iscrizione</button>
+              </div>
+
+            </form>
+
+            <form id="renew-form" style="display: none">
+              <div class="form-group">
+                <label for="renewIdField">Numero Socio</label>
+                <input type="number" class="form-control" id="renewIdField" placeholder="numero socio" required>
+              </div>
+              <div class="form-group">
+                <label for="renewEmailField">Email</label>
+                <input type="email" class="form-control" id="renewEmailField" placeholder="email" required>
+              </div>
+
+              <div class="text-center">
+                <button class="btn btn-default" id="renew-submit">Richiedi rinnovo</button>
               </div>
 
             </form>

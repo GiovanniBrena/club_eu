@@ -8,7 +8,7 @@
 
 require( "../config.php" );
 
-$data = Attivita::getList();
+$data = Attivita::getListVisible();
 $results['attivita'] = $data['results'];
 $results['totalRows'] = $data['totalRows'];
 

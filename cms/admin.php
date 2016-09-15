@@ -63,6 +63,21 @@ switch ( $action ) {
     case 'editCorso':
         editCorso();
         break;
+    case 'deleteCorso':
+        deleteCorso();
+        break;
+    case 'listNewsletter':
+        listNewsletter();
+        break;
+    case 'newNewsletter':
+        newNewsletter();
+        break;
+    case 'editNewsletter':
+        editNewsletter();
+        break;
+    case 'deleteNewsletter':
+        deleteNewsletter();
+        break;
     default:
         showDashboard();
 }
@@ -112,7 +127,7 @@ function newSocio() {
     $results['formAction'] = "newSocio";
 
     if ( isset( $_POST['saveChanges'] ) ) {
-
+/*
         if ( Socio::existsEmail((string)$_POST['email'])) {
             header( "Location: admin.php?action=listSoci&state=existingEmail" );
         }
@@ -121,13 +136,18 @@ function newSocio() {
             header( "Location: admin.php?action=listSoci&state=duplicated" );
         }
 
-        else {
+        else {*/
             // User has posted the socio edit form: save the new socio
             $socio = new Socio;
             $socio->storeFormValues($_POST);
             $socio->insert();
-            header("Location: admin.php?action=listSoci");
-        }
+
+            $month = date('m', time());
+            if($month<9) {$yearDef = date('Y', time());}
+            else {$yearDef = date('Y', time())+1;}
+
+            header("Location: admin.php?action=listSoci&year=".$yearDef);
+        //}
 
     } elseif ( isset( $_POST['cancel'] ) ) {
 
@@ -158,14 +178,13 @@ function editSocio() {
             return;
         }
 
-        else if ( Socio::existsNameSurnamePhone((string)$_POST['firstname'], (string)$_POST['lastname'] , (string)$_POST['phone'])) {
-            console_log("SOCIO DUPLICATO !!");
-            return;
-        }
-
         $socio->storeFormValues( $_POST );
         $socio->update();
-        header( "Location: admin.php?action=listSoci" );
+        $month = date('m', time());
+        if($month<9) {$yearDef = date('Y', time());}
+        else {$yearDef = date('Y', time())+1;}
+
+        header("Location: admin.php?action=listSoci&year=".$yearDef);
 
 
     } elseif ( isset( $_POST['cancel'] ) ) {
@@ -183,7 +202,11 @@ function editSocio() {
 
         $socio->storeFormValues( $_POST );
         $socio->renew();
-        header( "Location: admin.php?action=listSoci" );
+        $month = date('m', time());
+        if($month<9) {$yearDef = date('Y', time());}
+        else {$yearDef = date('Y', time())+1;}
+
+        header("Location: admin.php?action=listSoci&year=".$yearDef);
 
     } else {
 
@@ -205,7 +228,11 @@ function deleteSocio() {
     }
 
     $socio->delete();
-    header( "Location: admin.php?action=listSoci" );
+    $month = date('m', time());
+    if($month<9) {$yearDef = date('Y', time());}
+    else {$yearDef = date('Y', time())+1;}
+
+    header("Location: admin.php?action=listSoci&year=".$yearDef);
 }
 
 
@@ -549,4 +576,104 @@ function deleteCorso() {
 
     $corso->delete();
     header( "Location: admin.php?action=listCorsi");
+}
+
+
+// -------------- NEWSLETTER ----------------//
+
+function listNewsletter() {
+
+    $results = array();
+    $data = Newsletter::getList();
+    $results['newsletter'] = $data['results'];
+    $results['totalRows'] = $data['totalRows'];
+
+    $results['pageTitle'] = "Gestione Newsletter";
+
+    if ( isset( $_GET['error'] ) ) {
+        if ( $_GET['error'] == "articleNotFound" ) $results['errorMessage'] = "Error: Article not found.";
+    }
+
+    if ( isset( $_GET['status'] ) ) {
+        if ( $_GET['status'] == "changesSaved" ) $results['statusMessage'] = "Your changes have been saved.";
+        if ( $_GET['status'] == "articleDeleted" ) $results['statusMessage'] = "Article deleted.";
+    }
+
+    require( TEMPLATE_PATH . "/admin/listNewsletter.php" );
+}
+
+
+function newNewsletter() {
+
+    $results = array();
+    $results['pageTitle'] = "New Newsletter";
+    $results['formAction'] = "newNewsletter";
+
+    // SAVE FORM
+    if ( isset( $_POST['saveChanges'] ) ) {
+
+        // User has posted the socio edit form: save the new socio
+        $newsletter = new Newsletter();
+        $newsletter->storeFormValues($_POST);
+        $newsletter->insert();
+
+        header("Location: admin.php?action=listNewsletter");
+
+
+    } elseif ( isset( $_POST['cancel'] ) ) {
+
+        // User has cancelled their edits: return to the article list
+        header( "Location: admin.php" );
+    } else {
+
+        // User has not posted the article edit form yet: display the form
+        $results['newsletter'] = new Newsletter();
+        require( TEMPLATE_PATH . "/admin/editNewsletter.php" );
+    }
+
+}
+
+
+function editNewsletter() {
+
+    $results = array();
+    $results['pageTitle'] = "Edit Newsletter";
+    $results['formAction'] = "editNewsletter";
+
+
+    if ( isset( $_POST['saveChanges'] ) ) {
+
+        if ( !$newsletter = Newsletter::getById( (int)$_POST['id'] ) ) {
+            header( "Location: admin.php?error=articleNotFound" );
+            return;
+        }
+
+        $newsletter->storeFormValues( $_POST );
+        $newsletter->update();
+        header( "Location: admin.php?action=listNewsletter" );
+
+
+    } elseif ( isset( $_POST['cancel'] ) ) {
+
+        // User has cancelled their edits: return to the article list
+        header( "Location: admin.php" );
+    } else {
+
+        // User has not posted the article edit form yet: display the form
+        $results['newsletter'] = Newsletter::getById( (int)$_GET['id'] );
+        require( TEMPLATE_PATH . "/admin/editNewsletter.php" );
+    }
+
+}
+
+
+function deleteNewsletter() {
+
+    if ( !$newsletter = Newsletter::getById( (int)$_GET['newsletterId'] ) ) {
+        header( "Location: admin.php?error=articleNotFound" );
+        return;
+    }
+
+    $newsletter->delete();
+    header( "Location: admin.php?action=listNewsletter");
 }

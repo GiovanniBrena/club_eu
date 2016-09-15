@@ -14,4 +14,14 @@ $( document ).ready(function() {
             $(this).children("ul").slideDown("fast");
         }
     });
+
+    $.ajax({
+        type: "GET",
+        url: "../../cms/data_requests/get_newsletter_en.php",
+        dataType: "html",   //expect html to be returned
+        success: function(response){
+            $("#last-newsletter").html(response);
+        }
+    });
+
 });

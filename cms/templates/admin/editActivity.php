@@ -46,7 +46,6 @@ if ($activity->id == null) {
     <form action="admin.php?action=<?php echo $results['formAction']?>" method="post">
 
         <input type="hidden" name="id" value="<?php echo $activity->id ?>"/>
-        <input type="hidden" name="state" value="<?php echo $activity->state ?>"/>
         <input type="hidden" id="icon-url" name="icon_url" value="<?php echo $activity->icon_url ?>"/>
         <input type="hidden" name="attach_url" value="<?php echo $activity->attach_url ?>"/>
         <input type="hidden" name="place_available" value="<?php echo $activity->place_available ?>"/>
@@ -54,7 +53,7 @@ if ($activity->id == null) {
         <ul>
             <li>
                 <label for="title_it">Titolo ITA</label>
-                <input type="text" name="title_it" id="title_it" placeholder="Titolo ITA" maxlength="255" value="<?php echo htmlspecialchars($activity->title_it, ENT_COMPAT, 'ISO-8859-1')?>"/>
+                <input type="text" name="title_it" id="title_it" placeholder="Titolo ITA" required maxlength="255" value="<?php echo htmlspecialchars($activity->title_it, ENT_COMPAT, 'ISO-8859-1')?>"/>
             </li>
 
             <li>
@@ -74,7 +73,7 @@ if ($activity->id == null) {
 
             <li>
                 <label for="date_act">Data Attività</label>
-                <input type="date" id="date_act" name="date_act" value="<?php $dateAct = new DateTime($activity->date_act); echo $dateAct->format('Y-m-d')?>">
+                <input type="date" id="date_act" name="date_act" required value="<?php $dateAct = new DateTime($activity->date_act); echo $dateAct->format('Y-m-d')?>">
             </li>
 
             <li>
@@ -94,9 +93,14 @@ if ($activity->id == null) {
 
             <li>
                 <label for="place_total">Posti Totali</label>
-                <input type="number" name="place_total" id="place_total" placeholder="Numero Posti Totali" required maxlength="255" value="<?php echo htmlspecialchars( $activity->place_total )?>"/>
+                <input type="number" name="place_total" id="place_total" placeholder="Numero Posti Totali" maxlength="255" value="<?php echo htmlspecialchars( $activity->place_total )?>"/>
             </li>
 
+            <li>
+                <label for="state">Stato</label>
+                <input style="display: inline" id=state type="radio" name="state" value="0"  <?php if($activity->state==0) echo "checked"?>> Visibile
+                <input style="display: inline" type="radio" id="state" name="state" value="1" <?php if($activity->state==1) echo "checked"?>/> Nascosto
+            </li>
         </ul>
 
         <div class="buttons">

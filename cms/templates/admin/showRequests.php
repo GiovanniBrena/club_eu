@@ -2,7 +2,9 @@
 
 <div id="adminHeader">
           <span class="section-back-container">
-              <a href="admin.php?action=listSoci&year=2016">
+              <a href="admin.php?action=listSoci&year=<?php if($date = date('m', time())>8) {echo date('Y', time())+1;}
+              else {echo date('Y', time());}
+              ?>">
                   <i class="fa fa-arrow-left" style="top: 0; color: white; width: auto; padding: 4px"></i>
                   <span>back</span>
               </a>

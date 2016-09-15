@@ -79,7 +79,13 @@
         <div class="row modulo">
           <div class="col-md-8 col-md-offset-2">
             <p class="text-center">
-              Online form allows to send electronic enrolment request. The Club Europeo office will contact you back through email message to complete the enrolment process.
+              Online form allows to send electronic enrolment request. The Club Europeo office will contact you back through email message to complete the enrolment process.</p>
+              </br></br>
+            <div class="text-center">
+              <div class="btn-transp btn-enrol" id="btn-request" style="background-color: white">Enrolment</div>
+              <div class="btn-transp btn-enrol" id="btn-renew">Renewal</div>
+            </div>
+
             </br>
             <form id="request-form">
               <div class="form-group">
@@ -322,6 +328,22 @@
               </div>
               <div class="text-center">
                 <button class="btn btn-default" id="request-submit">Send request</button>
+              </div>
+
+            </form>
+
+            <form id="renew-form" style="display: none">
+              <div class="form-group">
+                <label for="renewIdField">Member ID</label>
+                <input type="number" class="form-control" id="renewIdField" placeholder="member id" required>
+              </div>
+              <div class="form-group">
+                <label for="renewEmailField">Email</label>
+                <input type="email" class="form-control" id="renewEmailField" placeholder="email" required>
+              </div>
+
+              <div class="text-center">
+                <button class="btn btn-default" id="renew-submit">Request renewal</button>
               </div>
 
             </form>

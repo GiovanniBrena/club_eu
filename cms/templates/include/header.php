@@ -1,3 +1,9 @@
+<?php
+$month = date('m', time());
+if($month<9) {$year = date('Y', time());}
+else {$year = date('Y', time())+1;}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,7 +39,7 @@
             </li>
 
             <li>
-                <a href="admin.php?action=listSoci&year=2016">
+                <a href='admin.php?action=listSoci&year=<?php echo $year?>'>
                     <i class="fa fa-user fa-lg fa-menu"></i>
                     <span class="nav-text">GESTIONE SOCI</span>
                 </a>
@@ -47,7 +53,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="admin.php?action=listCorsi">
                     <i class="fa fa-book fa-menu"></i>
                     <span class="nav-text">CORSI</span>
                 </a>

@@ -55,7 +55,7 @@ form {
 }
 
 .btn-newsletter .btn-default {
-      padding: 6px 36px;
+      padding: 6px 20px;
 }
 
 .btn-transp {
@@ -68,6 +68,10 @@ form {
 }
 
 .btn-transp:hover { background-color: white;}
+
+.btn-enrol {
+  width: 150px; height: 100px; display: inline; font-size: 1em; margin: 40px 6px;
+}
 
 .facebook a img, .facebook a h4 {
   float: right;
@@ -785,7 +789,7 @@ form {
   #iscrizione-main-container {padding-top: 100px; padding-bottom: 18px;}
   #iscrizione-main-container p {padding-top: 18px;}
   .azzurro .tit-pag {display: none;}
-  #request-form { padding: 0 18px;}
+  #request-form, #renew-form { padding: 0 18px;}
 
 
   /* Corsi */
